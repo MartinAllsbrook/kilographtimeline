@@ -1,0 +1,253 @@
+body {
+    background-color: #252525;
+    /* overflow-x: hidden; */
+
+    font-family: 'Poppins', sans-serif;
+
+    width: 100%;
+    height: 200vh;
+
+    margin: 0;
+    padding: 0;
+}
+
+/* FOOTER STYLE */
+footer {
+    display: flex;
+    background-color: #fff;
+    height: 24px;
+    width: 100%;
+
+    position: fixed;
+    bottom: 0%;
+    z-index: 50;
+
+    margin: 0;
+    padding: 0;
+}
+.footer-fill {
+    height: 24px;
+    width: 1px;
+
+    position: absolute;
+    z-index: 51;
+
+    background-color: #FFEF00;
+
+    margin: 0;
+    padding: 0;
+}
+.footer-date {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 52;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+/* HEADERS STYLE */
+h1{
+    color: #FFEF00;
+
+    font-size: 350px;
+    line-height: 300px;
+
+    margin: 0;
+    padding: 0;
+}
+h2 {
+    color: #FFEF00;
+
+    margin: 0;
+    padding: 0;
+}
+h3 {
+    color: #FFEF00;
+
+    margin: 0;
+    padding: 0;
+}
+h4 {
+    color: #FFEF00;
+
+    margin: 0;
+    padding: 0;
+}
+.footer-date h4 {
+    color: #252525;
+}
+h5 {
+    color: #FFEF00;
+
+    margin: 0;
+    padding: 0;
+}
+h6 {
+    color: #FFEF00;
+
+    margin: 0;
+    padding: 0;
+}
+
+/* OPENING STYLE */
+:root {
+    --years-of-width: 400px;
+    --years-of-height: 300px;
+}
+
+.kilo-logo-holder {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    width: 100%;
+    height: 100vh;
+
+    margin: 0;
+    padding: 0;
+}
+.kilo-logo {
+    height: var(--years-of-height);
+    width: auto;
+
+    margin: 0;
+    padding: 0;
+}
+
+.years-of-spacer {
+    width: var(--years-of-width);
+    height: var(--years-of-height);
+
+    margin: 0 0 0 20vw;
+    padding: 0;
+}
+
+.years-of-holder{
+    position: fixed;
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 100vh;
+
+    margin: 0;
+    padding: 0;
+}
+.years-of {
+    width: var(--years-of-width);
+    height: var(--years-of-height);
+
+    margin: 0 0 0 20vw;
+    padding: 0;
+}
+
+/* POSSIBILITIES INTERACTION */
+:root {
+    --poss-anim-length: 150vw;
+}
+/* @-webkit-keyframes horiz_scroll_animation{
+    0% {left: 0vw;}
+    100% {left: calc( (-1 * var(--poss-anim-length)) + 100vw);}
+} */
+.possibilities-track {
+    width: auto;
+    height: var(--poss-anim-length);
+
+    position: static;
+
+    overflow: visible;
+}
+.possibilities-camera {
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    position: sticky;
+    top: 0;
+}
+.possibilities-frame {
+    display: flex;
+    align-items: stretch;
+    justify-content: left;
+
+
+    width: auto;
+    height: 100%;
+
+    overflow: visible;
+    position: relative;
+    left: 0vw;
+}
+
+.possibilities-holder {
+    display: flex;
+    align-items: center;
+    
+    position: relative;
+
+    width: var(--poss-anim-length);
+    height: 100vh;
+}
+
+/* YEAR STYLING */
+.y2009-holder {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2022 */
+:root{
+    --y2022-anim-length: 250vw;
+}
+.y2022-track {
+    width: auto;
+    height: var(--y2022-anim-length);
+
+    position: static;
+
+    overflow: visible;
+
+    border: 20px dashed blue;
+}
+.y2022-camera {
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    position: sticky;
+    top: 0;
+
+    border: 20px dashed aqua;
+}
+.y2022-frame {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+
+    width: auto;
+    height: 100%;
+
+    overflow: visible;
+    position: relative;
+    left: 0vw;
+
+    border: 20px dashed green;
+}
+
+/* SCROLLBAR STYLE */
+::-webkit-scrollbar{
+    width: 0px;
+}
