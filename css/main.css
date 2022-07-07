@@ -149,7 +149,7 @@ h6 {
 
 /* POSSIBILITIES INTERACTION */
 :root {
-    --poss-anim-length: 150vw;
+    --poss-anim-length: 200vw;
 }
 /* @-webkit-keyframes horiz_scroll_animation{
     0% {left: 0vw;}
