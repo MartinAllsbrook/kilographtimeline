@@ -1,6 +1,6 @@
 body {
     background-color: #252525;
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
 
     font-family: 'Poppins', sans-serif;
 
@@ -55,9 +55,6 @@ footer {
 h1{
     color: #FFEF00;
 
-    font-size: 350px;
-    line-height: 300px;
-
     margin: 0;
     padding: 0;
 }
@@ -95,10 +92,15 @@ h6 {
     padding: 0;
 }
 
-/* OPENING STYLE */
+/* Intro STYLE */
+.intro h1{
+    font-size: 280px;
+    line-height: 200px;
+}
+
 :root {
-    --years-of-width: 400px;
-    --years-of-height: 300px;
+    --years-of-width: 300px;
+    --years-of-height: 200px;
 }
 
 .kilo-logo-holder {
@@ -149,12 +151,8 @@ h6 {
 
 /* POSSIBILITIES INTERACTION */
 :root {
-    --poss-anim-length: 200vw;
+    --poss-anim-length: 250vw;
 }
-/* @-webkit-keyframes horiz_scroll_animation{
-    0% {left: 0vw;}
-    100% {left: calc( (-1 * var(--poss-anim-length)) + 100vw);}
-} */
 .possibilities-track {
     width: auto;
     height: var(--poss-anim-length);
@@ -197,6 +195,18 @@ h6 {
 }
 
 /* YEAR STYLING */
+.year {
+
+
+    min-width: 100%;
+    min-height: 100vh;
+
+    border: 5px dashed red;
+    padding: -5px;
+}
+
+
+/* 2009 */
 .y2009-holder {
     width: 100%;
     height: 100vh;
@@ -205,6 +215,30 @@ h6 {
     justify-content: center;
     align-items: center;
 }
+
+/* 2010 */
+
+/* 2011 */
+
+/* 2012 */
+
+/* 2013 */
+
+/* 2014 */
+
+/* 2015 */
+
+/* 2016 */
+
+/* 2017 */
+
+/* 2018 */
+
+/* 2019 */
+
+/* 2020 */
+
+/* 2021 */
 
 /* 2022 */
 :root{
@@ -218,7 +252,7 @@ h6 {
 
     overflow: visible;
 
-    border: 20px dashed blue;
+    /* border: 20px dashed blue; */
 }
 .y2022-camera {
     width: 100%;
@@ -229,7 +263,7 @@ h6 {
     position: sticky;
     top: 0;
 
-    border: 20px dashed aqua;
+    /* border: 20px dashed aqua; */
 }
 .y2022-frame {
     display: flex;
@@ -244,7 +278,10 @@ h6 {
     position: relative;
     left: 0vw;
 
-    border: 20px dashed green;
+    /* border: 20px dashed green; */
+}
+.dubai-project-animation {
+    width: 100%;
 }
 
 /* SCROLLBAR STYLE */
