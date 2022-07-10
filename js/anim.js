@@ -25,7 +25,7 @@ window.addEventListener('scroll', () => {
     const scrollTop = possibilitiesTrack.getBoundingClientRect().top;
     const maxScrollTop = possibilitiesTrack.getBoundingClientRect().height - window.innerHeight;
     const scrollFraction = scrollTop / maxScrollTop;
-    const maxDisplacement = 100;
+    const maxDisplacement = 150;
 
     const displacement = Math.min(
         0,
@@ -71,15 +71,17 @@ const updateImage = index => {
 window.addEventListener('scroll', () =>{
     const scrollTop = -y2022Track.getBoundingClientRect().top;
     const maxScrollTop = y2022Track.getBoundingClientRect().height - window.innerHeight;
-    console.log(maxScrollTop);
     const scrollFraction = scrollTop / maxScrollTop;
-    console.log(scrollFraction);
-    const frameIndex = Math.min(
-        frameCount - 1,
-        Math.floor(scrollFraction * frameCount)
-    );
-    
-    requestAnimationFrame( () => updateImage(frameIndex + 1));
+
+    // If we are within the bounds of the animation window
+    if (scrollFraction >= 0 && scrollFraction <= 1){
+        const frameIndex = Math.min(
+            frameCount - 1,
+            Math.floor(scrollFraction * frameCount)
+        );
+
+        requestAnimationFrame( () => updateImage(frameIndex + 1));
+    }
 })
 
 // Preload images to prevent lag while scrolling
