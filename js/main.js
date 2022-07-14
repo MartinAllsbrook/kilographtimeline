@@ -7,5 +7,7 @@ for(let i = 0; i < 14; i++) {
 const slideshow = document.getElementsByClassName('intro-slideshow')[0];
 
 for(let i = 1; i < 6; i++) {
-    slideshow.innerHTML = slideshow.innerHTML + '<div class="years-of-spacer"></div> <image src="assets/intro/slideshow/' + i.toString().padStart(3, '0') + '.jpg" class="intro-slideshow-image" alt="Slideshow Image">';
+    slideshow.innerHTML = slideshow.innerHTML + '<image src="assets/intro/slideshow/' + i.toString().padStart(3, '0') + '.jpg" alt="Slideshow Image">';
 }
+
+console.log('Essential JS Loaded');

@@ -16,6 +16,25 @@ window.addEventListener('scroll', () => {
     footerFill.style.width = fillWidth.toString() + 'px';
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Possibilities animation
 const possibilitiesTrack = document.getElementsByClassName('possibilities-track')[0];
 const possibilitiesFrame = document.getElementsByClassName('possibilities-frame')[0];
@@ -25,18 +44,46 @@ window.addEventListener('scroll', () => {
     const scrollTop = possibilitiesTrack.getBoundingClientRect().top;
     const maxScrollTop = possibilitiesTrack.getBoundingClientRect().height - window.innerHeight;
     const scrollFraction = scrollTop / maxScrollTop;
-    const maxDisplacement = 150;
 
-    const displacement = Math.min(
+    // Distance possibilities is moved, in VW
+    // Orginal distance from left (40vw) + Possibilities frame width (???px) + distance from right (40vw)
+    const maxAnimationPercent = 100;
+
+    const animationPercent = Math.min(
         0,
         Math.max(
-            -maxDisplacement,
-            Math.floor(scrollFraction * maxDisplacement)
+            -maxAnimationPercent,
+            Math.floor(scrollFraction * maxAnimationPercent)
         )
     );
-    possibilitiesFrame.style.left = displacement.toString() + 'vw';
-    yearsOfHolder.style.left = displacement.toString() + 'vw';
+
+    const possWidth = document.querySelector('.possibilities-holder img').offsetWidth;
+    const possMoveEnd = 92;
+    // let pxTotal = possWidth * (animationPercent / 100);
+
+    let pxTotal = 0;
+    if(-animationPercent <= possMoveEnd){
+        pxTotal = possWidth * (animationPercent / possMoveEnd);
+    } else {
+        pxTotal = -possWidth;
+    }
+
+    possibilitiesFrame.style.left = pxTotal.toString() + 'px';
+    yearsOfHolder.style.left = pxTotal.toString() + 'px';
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 2022 Earth animation
 const canvas = document.querySelector('.dubai-project-animation');
@@ -94,3 +141,4 @@ const preloadImages = () => {
 
 preloadImages();
 
+console.log('All JS Loaded');
