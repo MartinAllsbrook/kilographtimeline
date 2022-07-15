@@ -16,65 +16,69 @@ window.addEventListener('scroll', () => {
     footerFill.style.width = fillWidth.toString() + 'px';
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Possibilities animation
-const possibilitiesTrack = document.getElementsByClassName('possibilities-track')[0];
-const possibilitiesFrame = document.getElementsByClassName('possibilities-frame')[0];
+// Intro Possibilities Animation
+const possibilitiesTrack = document.getElementsByClassName('possibilities')[0];
+const possibilitiesFrame = document.querySelector('.possibilities .frame');
 const yearsOfHolder = document.getElementsByClassName('years-of-holder')[0];
 
 window.addEventListener('scroll', () => {
-    const scrollTop = possibilitiesTrack.getBoundingClientRect().top;
+    const scrollTop = -(possibilitiesTrack.getBoundingClientRect().top);
     const maxScrollTop = possibilitiesTrack.getBoundingClientRect().height - window.innerHeight;
-    const scrollFraction = scrollTop / maxScrollTop;
+    let scrollFraction = scrollTop / maxScrollTop;
 
-    // Distance possibilities is moved, in VW
-    // Orginal distance from left (40vw) + Possibilities frame width (???px) + distance from right (40vw)
-    const maxAnimationPercent = 100;
+    if(scrollFraction <= 0) {
+        scrollFraction = 0;
+    }else if(scrollFraction >= 1) {
+        scrollFraction = 1;
+    }
+    // console.log(scrollFraction);
 
-    const animationPercent = Math.min(
-        0,
-        Math.max(
-            -maxAnimationPercent,
-            Math.floor(scrollFraction * maxAnimationPercent)
-        )
-    );
-
-    const possWidth = document.querySelector('.possibilities-holder img').offsetWidth;
-    const possMoveEnd = 92;
-    // let pxTotal = possWidth * (animationPercent / 100);
+    const moveDistance = -(document.querySelector('.possibilities img').offsetWidth);
+    const moveEnd = 0.85;
 
     let pxTotal = 0;
-    if(-animationPercent <= possMoveEnd){
-        pxTotal = possWidth * (animationPercent / possMoveEnd);
+    if(scrollFraction <= moveEnd){
+        pxTotal = moveDistance * (scrollFraction / moveEnd);
     } else {
-        pxTotal = -possWidth;
+        pxTotal = moveDistance;
     }
 
     possibilitiesFrame.style.left = pxTotal.toString() + 'px';
     yearsOfHolder.style.left = pxTotal.toString() + 'px';
 })
 
+// 2013 parralax animation
+const y2013Track = document.getElementsByClassName('y2013')[0];
+const y2013Frame = document.querySelector('.y2013 .frame');
 
+window.addEventListener('scroll', () => {
+    const scrollTop = -(y2013Track.getBoundingClientRect().top);
+    const maxScrollTop = y2013Track.getBoundingClientRect().height - window.innerHeight;
+    let scrollFraction = scrollTop / maxScrollTop;
 
+    if(scrollFraction <= 0) {
+        scrollFraction = 0;
+    }else if(scrollFraction >= 1) {
+        scrollFraction = 1;
+    }
+    console.log(scrollFraction);
 
+    const moveDistance = -(y2013Frame.offsetWidth)*2;
+    const moveEnd = 1;
+    // let pxTotal = possWidth * (animationPercent / 100);
+
+    let pxTotal = 0;
+
+    pxTotal = moveDistance * (scrollFraction / moveEnd) - moveDistance/2;
+
+    // if(scrollFraction <= moveEnd){
+    //     pxTotal = moveDistance * (scrollFraction / moveEnd);
+    // } else {
+    //     pxTotal = moveDistance;
+    // }
+
+    y2013Frame.style.left = pxTotal.toString() + 'px';
+})
 
 
 
