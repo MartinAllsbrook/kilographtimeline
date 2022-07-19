@@ -47,12 +47,57 @@ window.addEventListener('scroll', () => {
     yearsOfHolder.style.left = pxTotal.toString() + 'px';
 })
 
+// 2012 News
+const y2012 = document.getElementsByClassName('y2012')[0];
+const content = 'Kilograph’s Renderings of Cornell’s new High Tech Campus are featured in the New York Times';
+const content2 = 'Kilograph’s Renderings were featured by the NYT once again in 2015'
+let entered = false;
+let entered1 = false;
+let entered2 = false;
+const typewriters = document.getElementsByClassName('typewriter');
+
+window.addEventListener('scroll', () => {
+
+
+    const position = y2012.getBoundingClientRect().top - window.innerHeight*5/6;
+
+
+    if(position <= 0 && position >= (-window.innerHeight) && entered == false){
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'white';
+        writeText('2012', typewriters[0], 100, 0);
+        entered = true;
+    }
+
+    if(typewriters[1].getBoundingClientRect().top - window.innerHeight*5/6 <= 0 && entered1 == false){
+        writeText(content, typewriters[1], 25, 0);
+        entered1 = true;
+    }
+
+    if(typewriters[2].getBoundingClientRect().top - window.innerHeight*5/6 <= 0 && entered2 == false){
+        writeText(content2, typewriters[2], 25, 0);
+        entered2 = true;
+    }
+})
+
+function writeText(content, typewriter, typeSpeed, index) {
+    setTimeout(function onTick() {
+        if(index < content.length){
+            typewriter.innerHTML += content[index];
+            index++;
+            writeText(content, typewriter, typeSpeed, index)
+        }
+    }, typeSpeed);
+}
+
+
+
 // 2013 parralax animation
 const y2013Track = document.getElementsByClassName('y2013')[0];
-const y2013Frame = document.querySelector('.y2013 .frame');
+const y2013Frame = document.getElementsByClassName('c3-collage-frame')[0];
 
 window.addEventListener('scroll', () => {
     const scrollTop = -(y2013Track.getBoundingClientRect().top);
+    
     const maxScrollTop = y2013Track.getBoundingClientRect().height - window.innerHeight;
     let scrollFraction = scrollTop / maxScrollTop;
 
@@ -61,33 +106,30 @@ window.addEventListener('scroll', () => {
     }else if(scrollFraction >= 1) {
         scrollFraction = 1;
     }
-    console.log(scrollFraction);
+    // console.log(scrollFraction);
 
-    const moveDistance = -(y2013Frame.offsetWidth)*2;
-    const moveEnd = 1;
-    // let pxTotal = possWidth * (animationPercent / 100);
+    const scale = 400*(((1-scrollFraction)*0.75)+0.25);
+    console.log(scale);
 
-    let pxTotal = 0;
+    y2013Frame.style.width = scale.toString() + 'vw';
+    y2013Frame.style.height = scale.toString() + 'vh';
 
-    pxTotal = moveDistance * (scrollFraction / moveEnd) - moveDistance/2;
+    // const moveDistance = -(y2013Frame.offsetWidth)*2;
+    // const moveEnd = 1;
+    // // let pxTotal = possWidth * (animationPercent / 100);
 
-    // if(scrollFraction <= moveEnd){
-    //     pxTotal = moveDistance * (scrollFraction / moveEnd);
-    // } else {
-    //     pxTotal = moveDistance;
-    // }
+    // let pxTotal = 0;
 
-    y2013Frame.style.left = pxTotal.toString() + 'px';
+    // pxTotal = moveDistance * (scrollFraction / moveEnd) - moveDistance/2;
+
+    // // if(scrollFraction <= moveEnd){
+    // //     pxTotal = moveDistance * (scrollFraction / moveEnd);
+    // // } else {
+    // //     pxTotal = moveDistance;
+    // // }
+
+    // y2013Frame.style.left = pxTotal.toString() + 'px';
 })
-
-
-
-
-
-
-
-
-
 
 // 2022 Earth animation
 const canvas = document.querySelector('.dubai-project-animation');
