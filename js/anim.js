@@ -18,7 +18,7 @@ window.addEventListener('scroll', () => {
 
 // Intro Possibilities Animation
 const possibilitiesTrack = document.getElementsByClassName('possibilities')[0];
-const possibilitiesFrame = document.querySelector('.possibilities .frame');
+const possibilitiesFrame = document.querySelector('.possibilities .poss-frame');
 const yearsOfHolder = document.getElementsByClassName('years-of-holder')[0];
 
 window.addEventListener('scroll', () => {
@@ -106,29 +106,36 @@ window.addEventListener('scroll', () => {
     }else if(scrollFraction >= 1) {
         scrollFraction = 1;
     }
-    // console.log(scrollFraction);
+    console.log(scrollFraction);
 
-    const scale = 400*(((1-scrollFraction)*0.75)+0.25);
-    console.log(scale);
+    const panPoint = 0.2;
+    const panEnd = 0.7;
+    const panTotal = 5040;
+    // Zoom out initially
+    if(scrollFraction < panPoint) {
+        // start at 400% end with 400%*0.25=100% maybe scale with ^2
+        const scale = 400 * Math.pow((1 - scrollFraction * (0.5/0.2)),2);
+        // console.log(scale);
+        
+        y2013Frame.style.width = scale.toString() + 'vw';
+        y2013Frame.style.height = scale.toString() + 'vh';
+    }else if(y2013Frame.style.width != '100vw' && y2013Frame.style.height != '100vh'){
+        const left = -panTotal * (scrollFraction - panPoint);
+        y2013Frame.style.left = left.toString() + 'px';
 
-    y2013Frame.style.width = scale.toString() + 'vw';
-    y2013Frame.style.height = scale.toString() + 'vh';
-
-    // const moveDistance = -(y2013Frame.offsetWidth)*2;
-    // const moveEnd = 1;
-    // // let pxTotal = possWidth * (animationPercent / 100);
-
-    // let pxTotal = 0;
-
-    // pxTotal = moveDistance * (scrollFraction / moveEnd) - moveDistance/2;
-
-    // // if(scrollFraction <= moveEnd){
-    // //     pxTotal = moveDistance * (scrollFraction / moveEnd);
-    // // } else {
-    // //     pxTotal = moveDistance;
-    // // }
-
-    // y2013Frame.style.left = pxTotal.toString() + 'px';
+        y2013Frame.style.width = '100vw';
+        y2013Frame.style.height = '100vh';
+    }else if(scrollFraction < panEnd){
+        const left = -panTotal * (scrollFraction - panPoint);
+        y2013Frame.style.left = left.toString() + 'px';
+    }else if(scrollFraction < 0.93 && scrollFraction > panEnd){
+        document.getElementsByTagName('body')[0].style.backgroundColor = 'white'
+        y2013Frame.style.display = 'block';
+    }else if(scrollFraction > 0.93 && scrollFraction < 1) {
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#252525'
+        y2013Frame.style.display = 'none';
+    }
+    
 })
 
 // 2022 Earth animation

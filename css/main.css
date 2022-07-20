@@ -5,28 +5,19 @@ body {
     font-family: 'Poppins', sans-serif;
 
     width: 100%;
-    height: 200vh;
+    height: 100vh;
 
     transition: background-color 0.5s linear;
 
     margin: 0;
     padding: 0;
 }
-.center-align{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.center-align-vertical{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-}
-.right-align{
-    display: flex;
-    justify-content: right;
+.year {
+    min-width: 100%;
+    min-height: 100vh;
+
+    /* border: 5px dashed red; */
+    padding: -5px;
 }
 .camera {
     width: 100%;
@@ -37,7 +28,61 @@ body {
     position: sticky;
     top: 0;
 }
-.frame {
+.frame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+.px-frame{
+    width: 2400px;
+    height: 1350px;
+
+    position: relative;
+}
+.center-align{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    height: 100%;
+}
+.hero-wrap{
+    display: flex;
+
+    /* width: 80%; */
+}
+.hero-wrap img{
+    width: 61.8%;
+    height: fit-content;
+    display: block;
+    flex-shrink: 0;
+    position: relative;
+}
+.text-wrap{
+    width: 38.2%;
+    /* position: relative; */
+    
+    margin: 0 0 0 16px;
+}
+
+
+
+
+
+.center-align-vertical{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.right-align{
+    display: flex;
+    justify-content: right;
+}
+.poss-frame {
     display: flex;
     align-items: stretch;
     justify-content: left;
@@ -56,7 +101,7 @@ body {
     margin: 0;
     padding: 0;
 }
-.possibilities .frame {
+.possibilities .poss-frame {
     position: relative;
     left: 0vw;
 }
@@ -78,18 +123,24 @@ h3 {
     color: #FFEF00;
 
     font-family: ivyjournal, sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
     font-size: 40px;
-    line-height: 36px;
+    line-height: 120%;
 
-    margin: 0 0 12px 0;
+    margin: 0 0 0 0;
     padding: 0;
 }
 h4 {
     color: #FFEF00;
-
-    margin: 0;
+    
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0.01em;
+    margin: 2px 0 2px 0;
     padding: 0;
 }
 .footer-date h4 {
@@ -112,14 +163,17 @@ p {
 
     font-family: 'Poppins';
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 130%;
     margin: 0;
     padding: 0;
 }
 .yellow{
     color: #FFEF00;
+}
+.black{
+    color: #000;
 }
 
 /* FOOTER STYLE */
@@ -288,18 +342,6 @@ footer {
     padding: 0;
 }
 
-/* YEAR STYLING */
-.year {
-
-
-    min-width: 100%;
-    min-height: 100vh;
-
-    /* border: 5px dashed red; */
-    padding: -5px;
-}
-
-
 /* 2009 */
 .y2009-holder {
     width: 100%;
@@ -381,7 +423,11 @@ footer {
 }
 
 /* 2013 */
-
+.y2013{
+    position: relative;
+    width: 100vw;
+    height: 500vw;
+}
 .y2013 .camera{
     display: flex;
     justify-content: center;
@@ -394,7 +440,6 @@ footer {
 
     width: 400vw;
     height: 400vh;
-
     overflow: visible;
     position: relative;
 
@@ -409,21 +454,109 @@ footer {
     height: 25%;
 
     position: absolute;
+    object-fit: cover;
     left: 37.5%;
     top: 37.5%;
 }
 .c3-collage-frame img{
     position: absolute;
     object-fit: cover;
-    
+
     width: 25%;
     height: 25%;
 }
-.y2013{
-    width: 100vw;
-    height: 300vw;
+.c3-collage-frame img:nth-child(1) {
+    left: 96.5277%;
+    top: 37.5308%;
+
+    width: 39.7222%;
+    height: 31.8518%;
+}
+.c3-collage-frame img:nth-child(2) {
+    left: 44.375%;
+    top: 64.5679%;
+
+    width: 25.7638%;
+    height: 26.7901%;
+}
+.c3-collage-frame img:nth-child(3) {
+    left: 63.6111%;
+    top: 37.5308%;
+
+    width: 31.8055%;
+    height: 25.0617%;
+}
+.c3-collage-frame img:nth-child(4) {
+    left: 71.25%;
+    top: 64.5679%;
+
+    width: 24.1666%;
+    height: 20.3703%;
+}
+.c3-collage-frame img:nth-child(5) {
+    left: 24.0972%;
+    top: 64.5679%;
+
+    width: 19.1666%;
+    height: 15.0617%;
+}
+.c3-collage-frame img:nth-child(6) {
+    left: 101.6666%;
+    top: 13.8271%;
+
+    width: 25.6944%;
+    height: 21.7283%;
+}
+.c3-collage-frame img:nth-child(7) {
+    left: 71.6666%;
+    top: 09.1358%;
+
+    width: 28.8888%;
+    height: 26.4197%;
+}
+.c3-collage-frame img:nth-child(8) {
+    left: 17.1527%;
+    top: 26.0493%;
+
+    width: 19.2361%;
+    height: 17.5308%;
+}
+.c3-collage-frame img:nth-child(9) {
+    left: 37.5%;
+    top: 20.8641%;
+
+    width: 33.0555%;
+    height: 14.6913%;
+}
+.c3-collage-frame img:nth-child(10) {
+    left: 23.6111%;
+    top: 45.5555%;
+
+    width: 12.7777%;
+    height: 17.0370%;
+}
+.c3-collage-frame img:nth-child(11) {
+    left: 96.5277%;
+    top: 71.3580%;
+
+    width: 19.8611%;
+    height: 19.6296%;
+}
+.c3-info-wrap{
+    position: absolute;
+
+    left: 128.472%;
+    top: 13.6%;
+
+    width: 33.125%;
+    height: 21.8518%;
 }
 
+.metropolis-wrap{
+    position: absolute;
+
+    left: 175%;
+}
 .video-wrap{
     display: flex;
     /* width: 1300px; */
@@ -432,7 +565,7 @@ footer {
     padding: 0;
 }
 .video-wrap video{
-    width: 800px;
+    width: 650px;
     height: fit-content;
 
     margin: 0;
@@ -440,12 +573,21 @@ footer {
 }
 
 .info-wrap{
-    width: 400px;
+    width: 500px;
 
     position: relative;
 
-    margin: 0 0 0 8px;
+    margin: 0 0 0 16px;
 }
+/* HALOWEEN */
+.jackolantern{
+    width: 110%;
+
+    position: absolute;
+    bottom: 0;
+    left: -5%;
+}
+
 /* 2014 */
 
 /* 2015 */
