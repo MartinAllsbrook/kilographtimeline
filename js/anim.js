@@ -140,59 +140,30 @@ window.addEventListener('scroll', () => {
 });
 
 // 2014 parralax
-const y2014Track = document.getElementsByClassName('y2014')[0];
-const y2014Frame = document.querySelector('.y2014 .frame');
-const y2014Floaters = document.querySelectorAll('.y2014.floaters img');
-const y2014FloatersInitial = [681/14.40, 99/14.40, 146/14.40]
-window.addEventListener('scroll', () => {
-    // Probe position info
-    const scrollTop = -(y2014Track.getBoundingClientRect().top);
-    const maxScrollTop = y2014Track.getBoundingClientRect().height - window.innerHeight;
-    
-    // Create fraction of distance though the year
-    let scrollFraction = scrollTop / maxScrollTop;
-    if(scrollFraction <= 0) {
-        scrollFraction = 0;
-    }else if(scrollFraction >= 1) {
-        scrollFraction = 1;
-    }
-
-    // Create the value that will move the frame
-    let leftPercent = (scrollFraction - 0.5) * -200;
-    y2014Frame.style.left = leftPercent.toString() + '%';
-
-    // console.log(y2014Floaters[1].style.left);
-    for(let i=0; i < y2014Floaters.length; i++){
-        y2014Floaters[i].style.left = (y2014FloatersInitial[i] + leftPercent * 0.25).toString() + '%'
-    }
-});
+window.addEventListener('scroll', () => basicParralax(
+    document.getElementsByClassName('y2014')[0], 
+    document.querySelector('.y2014 .frame'), 
+    document.querySelectorAll('.y2014 .floaters img'), 
+    [681/14.40, 99/14.40, 146/14.40]
+));
 
 // 2015 parralax
-const y2015Track = document.getElementsByClassName('y2015')[0];
-const y2015Frame = document.querySelector('.y2015 .frame');
-const y2015Floaters = document.querySelectorAll('.y2015.floaters img');
-const y2015FloatersInitial = [681/14.40, 99/14.40, 146/14.40]
-window.addEventListener('scroll', () => {
-    // Probe position info
-    let scrollTop = -(y2015Track.getBoundingClientRect().top);
-    const maxScrollTop = y2015Track.getBoundingClientRect().height;
+window.addEventListener('scroll', () => basicParralax(
+    document.getElementsByClassName('y2015')[0],
+    document.querySelector('.y2015 .frame'),
+    document.querySelectorAll('.y2015 .floaters img'),
+    [127/14.40, 178/14.40, 732/14.40, 1465/14.40]
+));
 
-    scrollTop = scrollTop + window.innerHeight/2;
-    // Create fraction of distance though the year
-    let scrollFraction = scrollTop / maxScrollTop;
-    console.log(scrollTop);
+// 2016 parralax
+window.addEventListener('scroll', () => basicParralax(
+    document.getElementsByClassName('y2016')[0],
+    document.querySelector('.y2016 .frame'),
+    document.querySelectorAll('.y2016 .floaters img'),
+    [233/14.40, 426/14.40]
+));
 
-    // Create the value that will move the frame
-    let leftPercent = (scrollFraction - 0.5) * -100;
-    console.log(leftPercent);
-    y2015Frame.style.left = leftPercent.toString() + '%';
-
-    // console.log(y2015Floaters[1].style.left);
-    for(let i=0; i < y2015Floaters.length; i++){
-        y2015Floaters[i].style.left = (y2015FloatersInitial[i] + leftPercent * 0.25).toString() + '%'
-    }
-});
-
+// Basic Parralax function
 function basicParralax(track, frame, floaters, floatersInit) {
     // basic constants from inputs
     const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
@@ -208,7 +179,6 @@ function basicParralax(track, frame, floaters, floatersInit) {
         floaters[i].style.left = (floatersInit[i] + leftPercent * 0.25).toString() + '%'
     }
 }
-
 
 // 2022 Earth animation
 const canvas = document.querySelector('.dubai-project-animation');

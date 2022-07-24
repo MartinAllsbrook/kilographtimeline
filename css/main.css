@@ -51,13 +51,14 @@ body {
 .center-align{
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     
     width: 100%;
     height: 100%;
 }
 .hero-wrap{
     display: flex;
+    position: relative;
 
     width: 61.8%;
 }
@@ -395,7 +396,9 @@ footer {
     padding: 0;
 }
 
-/* 2009 */
+/* -=+==========+=- */
+/* -=+=- 2009 -=+=- */
+/* -=+==========+=- */
 .y2009-holder {
     width: 100%;
     height: 100vh;
@@ -405,11 +408,17 @@ footer {
     align-items: center;
 }
 
-/* 2010 */
+/* -=+==========+=- */
+/* -=+=- 2010 -=+=- */
+/* -=+==========+=- */
 
-/* 2011 */
+/* -=+==========+=- */
+/* -=+=- 2011 -=+=- */
+/* -=+==========+=- */
 
-/* 2012 */
+/* -=+==========+=- */
+/* -=+=- 2012 -=+=- */
+/* -=+==========+=- */
 .y2012 {
     margin: 0 0 75vh 0;
 }
@@ -475,7 +484,9 @@ footer {
     margin: 10px 0 0 0;
 }
 
-/* 2013 */
+/* -=+==========+=- */
+/* -=+=- 2013 -=+=- */
+/* -=+==========+=- */
 .y2013{
     position: relative;
     width: 100vw;
@@ -604,7 +615,6 @@ footer {
     width: 33.125%;
     height: 21.8518%;
 }
-
 .metropolis-wrap{
     position: absolute;
 
@@ -624,7 +634,6 @@ footer {
     margin: 0;
     padding: 0;
 }
-
 .info-wrap{
     width: 500px;
 
@@ -632,7 +641,10 @@ footer {
 
     margin: 0 0 0 16px;
 }
-/* HALOWEEN */
+
+/* -=+==========+=- */
+/* -=+=- Halo -=+=- */
+/* -=+==========+=- */
 .jackolantern{
     width: 110%;
 
@@ -640,37 +652,112 @@ footer {
     bottom: 0;
     left: -5%;
 }
-
-/* 2014 */
+/* :root {
+    --verticalCorrect: 150vw;
+} */
+/* -=+==========+=- */
+/* -=+=- 2014 -=+=- */
+/* -=+==========+=- */
 .y2014{
-    height: 300vw;
+    height: 200vw;
 }
-.floaters img:nth-child(1){
+.y2014 .hero-wrap{
+    top: 29.5%;
+}
+.y2014 .floaters img:nth-child(1){
     width: calc(231%/14.40);
 
     left: calc(681%/14.40);
     top: calc(531%/8.10);
 }
-
-.floaters img:nth-child(2){
+.y2014 .floaters img:nth-child(2){
     width: calc(304%/14.40);
 
     left: calc(99%/14.40);
     top: calc(118%/8.10);
 }
+.y2014 .floaters img:nth-child(3){
+    width: calc(210%/14.40);
+    top: calc(550%/8.10);
 
-.floaters img:nth-child(3){
+    left: calc(146%/14.40);
+}
+
+/* -=+==========+=- */
+/* -=+=- 2015 -=+=- */
+/* -=+==========+=- */
+.y2015{
+    height: 200vw;
+
+    margin-bottom: 50vw;
+}
+.y2015 .hero-wrap{
+    top: calc(174%/8.1);
+}
+.y2015 .extra-hero{
+    position: absolute;
+
+    width: calc(484%/14.40);
+    left: calc(1131%/14.40);
+    top: calc(441%/8.10);
+}
+.y2015 .floaters img:nth-child(1){
+    width: calc(231%/14.40);
+
+    left: calc(681%/14.40);
+    top: calc(531%/8.10);
+}
+.y2015 .floaters img:nth-child(2){
+    width: calc(304%/14.40);
+
+    left: calc(99%/14.40);
+    top: calc(118%/8.10);
+}
+.y2015 .floaters img:nth-child(3){
     width: calc(210%/14.40);
 
     left: calc(146%/14.40);
     top: calc(550%/8.10);
 }
-/* 2015 */
-.y2015{
-    height: 300vw;
-}
-/* 2016 */
+.y2015 .floaters img:nth-child(4){
+    width: calc(233%/14.40);
 
+    left: calc(146%/14.40);
+    top: calc(320%/8.10);
+}
+/* -=+==========+=- */
+/* -=+=- 2016 -=+=- */
+/* -=+==========+=- */
+.y2016{
+    height: 200vw;
+}
+.y2016 .hero-wrap{
+    top: calc(270%/8.1);
+}
+.y2016 .floaters img:nth-child(1){
+    width: calc(333%/14.40);
+
+    left: calc(681%/14.40);
+    top: calc(501%/8.10);
+}
+.y2016 .floaters img:nth-child(2){
+    width: calc(320%/14.40);
+
+    left: calc(99%/14.40);
+    top: calc(96%/8.10);
+}
+.y2016 .floaters img:nth-child(3){
+    width: calc(210%/14.40);
+
+    left: calc(146%/14.40);
+    top: calc(550%/8.10);
+}
+.y2016 .floaters img:nth-child(4){
+    width: calc(233%/14.40);
+
+    left: calc(146%/14.40);
+    top: calc(320%/8.10);
+}
 /* 2017 */
 
 /* 2018 */
