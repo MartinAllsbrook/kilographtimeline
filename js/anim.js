@@ -91,53 +91,93 @@ function writeText(content, typewriter, typeSpeed, index) {
 
 
 
-// 2013 parralax animation
-const y2013Track = document.getElementsByClassName('y2013')[0];
-const y2013Frame = document.getElementsByClassName('c3-collage-frame')[0];
+// 2013
+{
+    const track = document.getElementsByClassName('y2013')[0];
+    const frame = document.querySelector('.y2013 .frame');
+    const nestedFrame = document.getElementsByClassName('collage')[0];
+    const panStart = 0.2;
+    const panEnd = 0.8;
+    window.addEventListener('scroll', () => {
+        const trackPosition = -track.getBoundingClientRect().top;
+        const trackHeight = track.getBoundingClientRect().height - window.innerHeight;
+        let scrollFraction = trackPosition / trackHeight;
+        // console.log(scrollFraction);
 
-window.addEventListener('scroll', () => {
-    // Probe position info
-    const scrollTop = -(y2013Track.getBoundingClientRect().top);
-    const maxScrollTop = y2013Track.getBoundingClientRect().height - window.innerHeight;
-    
-    // Create fraction of distance though the year
-    let scrollFraction = scrollTop / maxScrollTop;
-    if(scrollFraction <= 0) {
-        scrollFraction = 0;
-    }else if(scrollFraction >= 1) {
-        scrollFraction = 1;
-    }
-    // console.log(scrollFraction);
+        let collageSize = 450,
+            leftPercent = 0;
+        // Initial zoom out of collage
+        if(scrollFraction < panStart) {
+            // Remove any movement before the frame is in view
+            if(scrollFraction <= 0) {
+                scrollFraction = 0;
+            }
 
-    const panPoint = 0.2;
-    const panEnd = 0.7;
-    const panTotal = 5040;
-    // Zoom out initially
-    if(scrollFraction < panPoint) {
-        // start at 400% end with 400%*0.25=100% maybe scale with ^2
-        const scale = 400 * Math.pow((1 - scrollFraction * (0.5/0.2)),2);
-        // console.log(scale);
+            // Set movement variables
+            collageSize = (450 - 100*(scrollFraction * 0.5/panStart)) * Math.pow((1 - (scrollFraction * 0.5/panStart)), 2);
+            leftPercent = 0;
+
+        // Pan entire frame
+        }else if(scrollFraction >= panStart && scrollFraction < panEnd){
+            collageSize = 100;
+            leftPercent = -180 * ((scrollFraction - panStart)/(panEnd - panStart));
+            document.getElementsByTagName('body')[0].style.backgroundColor = 'white';
         
-        y2013Frame.style.width = scale.toString() + 'vw';
-        y2013Frame.style.height = scale.toString() + 'vh';
-    }else if(y2013Frame.style.width != '100vw' && y2013Frame.style.height != '100vh'){
-        const left = -panTotal * (scrollFraction - panPoint);
-        y2013Frame.style.left = left.toString() + 'px';
+        // Post pan actions
+        }else if(scrollFraction >= panEnd) {
+            collageSize = 100;
+            leftPercent = -180;
+            document.getElementsByTagName('body')[0].style.backgroundColor = '#252525';
+        }
 
-        y2013Frame.style.width = '100vw';
-        y2013Frame.style.height = '100vh';
-    }else if(scrollFraction < panEnd){
-        const left = -panTotal * (scrollFraction - panPoint);
-        y2013Frame.style.left = left.toString() + 'px';
-    }else if(scrollFraction < 0.93 && scrollFraction > panEnd){
-        document.getElementsByTagName('body')[0].style.backgroundColor = 'white'
-        y2013Frame.style.display = 'block';
-    }else if(scrollFraction > 0.93 && scrollFraction < 1) {
-        document.getElementsByTagName('body')[0].style.backgroundColor = '#252525'
-        y2013Frame.style.display = 'none';
-    }
-    
-});
+
+
+
+        frame.style.left = leftPercent.toString() + '%';
+        nestedFrame.style.width = collageSize.toString() + '%';
+        nestedFrame.style.height = collageSize.toString() + '%';
+    });
+}
+//         y2013Frame.style.width = '100vw';
+//         y2013Frame.style.height = '100vh';
+//     }else if(scrollFraction < panEnd){
+//         const left = -panTotal * (scrollFraction - panStart);
+//         y2013Frame.style.left = left.toString() + 'px';
+//     }else if(scrollFraction < 0.93 && scrollFraction > panEnd){
+//         document.getElementsByTagName('body')[0].style.backgroundColor = 'white'
+//         y2013Frame.style.display = 'block';
+//     }else if(scrollFraction > 0.93 && scrollFraction < 1) {
+//         document.getElementsByTagName('body')[0].style.backgroundColor = '#252525'
+//         y2013Frame.style.display = 'none';
+//     }
+// });
+
+// Halloween
+{
+    const track = document.getElementsByClassName('halloween')[0];
+    const frame = document.querySelector('.halloween .px-frame div');
+    const pxframe = document.querySelector('.halloween .px-frame');
+    window.addEventListener('scroll', () => {
+        const trackPosition = -track.getBoundingClientRect().top;
+        const trackHeight = track.getBoundingClientRect().height - 4 * window.innerHeight;
+        let scrollFraction = trackPosition / trackHeight;
+
+        if(scrollFraction < 1) {
+            if(scrollFraction <= 0) {
+                scrollFraction = 0;
+            }
+            let leftPercent = (scrollFraction) * -200;
+            frame.style.left = leftPercent.toString() + '%';
+            pxframe.style.left = '0%';
+        }else if(scrollFraction >= 1) {
+            // scrollFraction = 1;
+            let leftPercent = (scrollFraction - 1) * -200;
+            frame.style.left = '-200%';
+            pxframe.style.left = leftPercent.toString() + '%';
+        }
+    });
+}
+
 
 // 2014 parralax
 window.addEventListener('scroll', () => basicParralax(
