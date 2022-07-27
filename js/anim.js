@@ -155,7 +155,7 @@ function writeText(content, typewriter, typeSpeed, index) {
 // Halloween
 {
     const track = document.getElementsByClassName('halloween')[0];
-    const frame = document.querySelector('.halloween .px-frame div');
+    const frame = document.querySelector('.halloween .px-frame .halloween-reel');
     const pxframe = document.querySelector('.halloween .px-frame');
     window.addEventListener('scroll', () => {
         const trackPosition = -track.getBoundingClientRect().top;

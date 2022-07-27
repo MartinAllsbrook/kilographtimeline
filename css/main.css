@@ -12,6 +12,10 @@ body {
     margin: 0;
     padding: 0;
 }
+
+/* -=+============+=- */
+/* -=+=- BASICS -=+=- */
+/* -=+============+=- */
 .year {
     min-width: 100%;
     min-height: 100vh;
@@ -21,7 +25,6 @@ body {
     height: 100vh;
 
     overflow: hidden;
-
     position: sticky;
     top: 0;
 }
@@ -46,10 +49,22 @@ body {
 .center-align{
     display: flex;
     justify-content: center;
-    /* align-items: center; */
+
+    width: 100%;
+    height: 100vh;
+}
+.center-column{
+    display: flex;
+    justify-content: center;
     
     width: 100%;
+}
+.center-row{
+    display: flex;
+    align-items: center;
+
     height: 100%;
+    width: 100%;
 }
 .hero-wrap{
     display: flex;
@@ -57,12 +72,12 @@ body {
 
     width: 61.8%;
 }
-.text-wrap{
-    width: 38.2%;
+.hero-wrap video{
+    width: 61.8%;
+    height: fit-content;
+    display: block;
     flex-shrink: 1;
     position: relative;
-    
-    margin: 0 0 0 16px;
 }
 .hero-wrap img{
     width: 61.8%;
@@ -71,41 +86,21 @@ body {
     flex-shrink: 1;
     position: relative;
 }
+.text-wrap{
+    width: 38.2%;
+    flex-shrink: 1;
+    position: relative;
+    
+    margin: 0 0 0 16px;
+}
 .floaters img{
     position: absolute;
     height: fit-content;
 }
-.center-align-vertical{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-}
-.right-align{
-    display: flex;
-    justify-content: right;
-}
-.poss-frame {
-    display: flex;
-    align-items: stretch;
-    justify-content: left;
 
-    width: auto;
-    height: 100%;
-
-    overflow: visible;
-    position: fixed;
-    top: 0%;
-    left: 0%;
-
-    margin: 0;
-    padding: 0;
-}
-.possibilities .poss-frame {
-    position: relative;
-    left: 0vw;
-}
-
-/* HEADERS STYLE */
+/* -=+================+=- */
+/* -=+=- TEXT STYLE -=+=- */
+/* -=+================+=- */
 h1{
     font-size: 220px;
 
@@ -199,10 +194,10 @@ p {
 .black{
     color: #000;
 }
-/* BREAKPOINTS */
 
-/* 2401px+ ^^^^ */
-
+/* -=+=================+=- */
+/* -=+=- BREAKPOINTS -=+=- */
+/* -=+=================+=- */
 @media screen and (max-width: 2400px) {
     .px-frame{
         width: 2160px;
@@ -239,56 +234,17 @@ p {
         height: 540px;
     }
 }
-
-
-/* =================================================================================================== */
-/* =================================================================================================== */
-/* ================================= NON GENERAL CSS PAST THIS POINT ================================= */
-/* =================================================================================================== */
-/* =================================================================================================== */
-
-/* FOOTER STYLE */
-footer {
-    display: flex;
-    background-color: #fff;
-    height: 24px;
-    width: 100%;
-
-    position: fixed;
-    bottom: 0%;
-    z-index: 50;
-
-    margin: 0;
-    padding: 0;
+@media screen and (max-width: 1065px) {
+    
 }
-.footer-fill {
-    height: 24px;
-    width: 1px;
 
-    position: absolute;
-    z-index: 51;
+/* -=+===================================================================================================+=- */
+/* -=+===================================================================================================+=- */
+/* -=+=================================+=- NON GENERAL CSS PAST THIS POINT -=+===========================+=- */
+/* -=+===================================================================================================+=- */
+/* -=+===================================================================================================+=- */
 
-    background-color: #FFEF00;
 
-    margin: 0;
-    padding: 0;
-}
-.footer-date {
-    flex-grow: 1;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 52;
-
-    margin: 0;
-    padding: 0;
-}
-.footer-date h6{
-    line-height: 50%;
-    color: #252525;
-}
 
 /* Intro STYLE */
 :root {
@@ -359,6 +315,26 @@ footer {
 }
 
 /* POSSIBILITIES INTERACTION */
+.poss-frame {
+    display: flex;
+    align-items: stretch;
+    justify-content: left;
+
+    width: auto;
+    height: 100%;
+
+    overflow: visible;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+
+    margin: 0;
+    padding: 0;
+}
+.possibilities .poss-frame {
+    position: relative;
+    left: 0vw;
+}
 :root {
     --poss-anim-length: 150vw;
 }
@@ -416,12 +392,7 @@ footer {
 /* -=+==========+=- */
 /* -=+=- 2009 -=+=- */
 /* -=+==========+=- */
-.y2009-holder {
-    width: 100%;
-    height: 100vh;
-
-    display: flex;
-    justify-content: center;
+.y2009 .center-align {
     align-items: center;
 }
 
@@ -438,6 +409,7 @@ footer {
 /* -=+==========+=- */
 .y2012 {
     margin: 0 0 0 0;
+    overflow: hidden;
 }
 .y2012 h1 {
     color: #000;
@@ -450,10 +422,13 @@ footer {
     color: #000;
 
     width: 1080px;
-    height: 96px;
 }
 .y2012 .contentbox {
     width: 1080px;
+}
+.y2012 .right-align{
+    display: flex;
+    justify-content: right;
 }
 .y2012 img {
     width: 1080px;
@@ -527,8 +502,6 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* overflow: visible; */
 }
 .y2013 .frame{
     position: relative;
@@ -538,6 +511,12 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.y2013 .center-align{
+    position: absolute;
+    align-items: center;
+
+    left: 175%;
 }
 .collage {
     flex-shrink: 0;
@@ -550,7 +529,7 @@ footer {
     margin: 0;
     padding: 0;
 }
-.c3-video {
+.y2013 .collage video {
     width: 25%;
     height: 25%;
 
@@ -559,6 +538,17 @@ footer {
     left: 37.5%;
     top: 37.5%;
 }
+.y2013 .collage .text-wrap{
+    position: absolute;
+
+    left: 128.472%;
+    top: 13.6%;
+
+    width: 33.125%;
+    height: 21.8518%;
+}
+
+/* Collage Style */
 .y2013 .frame img{
     position: absolute;
     object-fit: cover;
@@ -643,45 +633,10 @@ footer {
     width: 19.8611%;
     height: 19.6296%;
 }
-.c3-info-wrap{
-    position: absolute;
 
-    left: 128.472%;
-    top: 13.6%;
-
-    width: 33.125%;
-    height: 21.8518%;
-}
-.metropolis-wrap{
-    position: absolute;
-
-    left: 175%;
-}
-.video-wrap{
-    display: flex;
-    /* width: 1300px; */
-
-    margin: 0;
-    padding: 0;
-}
-.video-wrap video{
-    width: 650px;
-    height: fit-content;
-
-    margin: 0;
-    padding: 0;
-}
-.info-wrap{
-    width: 500px;
-
-    position: relative;
-
-    margin: 0 0 0 16px;
-}
-
-/* -=+==========+=- */
-/* -=+=- Halo -=+=- */
-/* -=+==========+=- */
+/* -=+===============+=- */
+/* -=+=- Halloween -=+=- */
+/* -=+===============+=- */
 .jackolantern{
     width: 110%;
 
@@ -693,23 +648,40 @@ footer {
     height: 500vw;
     margin-bottom: -120vw;
 }
+.halloween .frame{
+    position: relative;
+    left: 0;
+}
 .halloween .px-frame{
-    /* display: flex; */
+    display: flex;
     align-items: center;
+    justify-content: center;
     position: relative;
 }
-.halloween .px-frame h3{
-    margin: 15% 5% 3.1% 5%;
+.halloween .hero-wrap {
+    height: 61.8%;
+    display: block;
+    position: relative;
+    
+    width: 61.8%;
 }
-.halloween .px-frame div{
-    margin: 0 5% 0 5%;
-    height: 38.2716%;
+.halloween .top {
+    height: 38.2%;
+    width: 61.8%;
+}
+.halloween .bottom {
+    height: 61.8%;
+}
+.halloween .halloween-reel{
+    margin: 2% 0;
+    height: 61.8%;
     display: flex;
 
     position: relative;
 }
 .halloween img{
-    /* height: 30%; */
+    height: 100%;
+    width: fit-content;
 
     margin: 0 2% 0 0;
 }
@@ -873,3 +845,47 @@ footer {
     width: 0;
 }
 
+/* -=+==================+=- */
+/* -=+=- FOOTER STYLE -=+=- */
+/* -=+==================+=- */
+footer {
+    display: flex;
+    background-color: #fff;
+    height: 24px;
+    width: 100%;
+
+    position: fixed;
+    bottom: 0%;
+    z-index: 50;
+
+    margin: 0;
+    padding: 0;
+}
+.footer-fill {
+    height: 24px;
+    width: 1px;
+
+    position: absolute;
+    z-index: 51;
+
+    background-color: #FFEF00;
+
+    margin: 0;
+    padding: 0;
+}
+.footer-date {
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 52;
+
+    margin: 0;
+    padding: 0;
+}
+.footer-date h6{
+    line-height: 50%;
+    color: #252525;
+}
