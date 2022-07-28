@@ -762,6 +762,16 @@ p {
 /* -=+==========+=- */
 /* -=+=- 2016 -=+=- */
 /* -=+==========+=- */
+.background-text{
+    position: fixed;
+    top: 0%;
+    left: 100%;
+    width: 200vw;
+}
+.background-text .center-align{
+    align-items: center;
+}
+
 .y2016{
     height: 150vw;
 }

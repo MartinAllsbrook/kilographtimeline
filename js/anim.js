@@ -195,12 +195,48 @@ window.addEventListener('scroll', () => basicParralax(
     [127/14.40, 178/14.40, 732/14.40, 1465/14.40]
 ));
 
-// 2016 parralax
+// 2016 gensler parralax
+{
+    const track = document.getElementsByClassName('gensler')[0];
+    const frame = document.querySelector('.gensler .frame');
+    const floaters = document.querySelectorAll('.gensler .floaters img');
+    const floatersInit = [233/14.40, 426/14.40];
+    const backgroundFrame = document.getElementsByClassName('background-text')[0];
+
+    window.addEventListener('scroll', () => {
+        // basic constants from inputs
+        const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
+        const trackHeight = track.getBoundingClientRect().height;
+        const scrollFraction = trackPosition / trackHeight;
+        console.log(scrollFraction);
+
+        // Create the value that will move the frame
+        let leftPercent = (scrollFraction - 0.5) * -100;
+        frame.style.left = leftPercent.toString() + '%';
+
+        leftPercent = (scrollFraction - 0.5) * -60;
+        backgroundFrame.style.left = leftPercent.toString() + '%';
+        // Move floaters
+        for(let i=0; i < floaters.length; i++){
+            floaters[i].style.left = (floatersInit[i] + leftPercent * 0.25).toString() + '%'
+        }
+    });
+}
+
+// 2016 zaha parralax
 window.addEventListener('scroll', () => basicParralax(
-    document.getElementsByClassName('y2016')[0],
-    document.querySelector('.y2016 .frame'),
-    document.querySelectorAll('.y2016 .floaters img'),
-    [233/14.40, 426/14.40]
+    document.getElementsByClassName('zaha')[0],
+    document.querySelector('.zaha .frame'),
+    document.querySelectorAll('.zaha .floaters img'),
+    [233/14.40, 426/14.40] // Add one more here
+));
+
+// 2016 wiscombe parralax
+window.addEventListener('scroll', () => basicParralax(
+    document.getElementsByClassName('wiscombe')[0],
+    document.querySelector('.wiscombe .frame'),
+    document.querySelectorAll('.wiscombe .floaters img'),
+    [233/14.40, 426/14.40] // Add one more here
 ));
 
 // Basic Parralax function
