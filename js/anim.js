@@ -200,7 +200,7 @@ window.addEventListener('scroll', () => basicParralax(
     const track = document.getElementsByClassName('gensler')[0];
     const frame = document.querySelector('.gensler .frame');
     const floaters = document.querySelectorAll('.gensler .floaters img');
-    const floatersInit = [233/14.40, 426/14.40];
+    const floatersInit = [233/14.4, 456/14.4, 80/14.4];
     const backgroundFrame = document.getElementsByClassName('background-text')[0];
 
     window.addEventListener('scroll', () => {
@@ -208,7 +208,7 @@ window.addEventListener('scroll', () => basicParralax(
         const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
         const trackHeight = track.getBoundingClientRect().height;
         const scrollFraction = trackPosition / trackHeight;
-        console.log(scrollFraction);
+        // console.log(scrollFraction);
 
         // Create the value that will move the frame
         let leftPercent = (scrollFraction - 0.5) * -100;
@@ -228,7 +228,7 @@ window.addEventListener('scroll', () => basicParralax(
     document.getElementsByClassName('zaha')[0],
     document.querySelector('.zaha .frame'),
     document.querySelectorAll('.zaha .floaters img'),
-    [233/14.40, 426/14.40] // Add one more here
+    [243/14.40, 810/14.40, 122/14.4, 413/14.4] // Add one more here
 ));
 
 // 2016 wiscombe parralax
@@ -236,10 +236,25 @@ window.addEventListener('scroll', () => basicParralax(
     document.getElementsByClassName('wiscombe')[0],
     document.querySelector('.wiscombe .frame'),
     document.querySelectorAll('.wiscombe .floaters img'),
-    [233/14.40, 426/14.40] // Add one more here
+    [233/14.40, 106/14.40, 1100/14.4 , 670/14.4] // Add one more here
 ));
 
-// Basic Parralax function
+// 2017 Silverlake
+animateImages(
+    document.querySelector('.y2017 canvas'),
+    document.getElementsByClassName('y2017')[0],
+    448,
+    'assets/2017/silverlake-anim/'
+);
+
+// 2022 Earth / Dubai
+animateImages(
+    document.querySelector('.y2022 canvas'),
+    document.getElementsByClassName('y2022')[0],
+    150,
+    'assets/2022/earth-image-sequence/'
+);
+
 function basicParralax(track, frame, floaters, floatersInit) {
     // basic constants from inputs
     const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
@@ -256,60 +271,85 @@ function basicParralax(track, frame, floaters, floatersInit) {
     }
 }
 
-// 2022 Earth animation
-const canvas = document.querySelector('.dubai-project-animation');
-const y2022Track = document.getElementsByClassName('y2022-track')[0];
-const y2022Frame = document.getElementsByClassName('y2022-frame')[0];
-const context = canvas.getContext('2d');
+function animateImages(canvas, track, frameCount, imageLocation){
+    const context = canvas.getContext('2d');
+    canvas.height = 1080;
+    canvas.width = 1920;
 
-// Set current frame
-const currentFrame = index => (
-    `assets/2022/earth-image-sequence/Image sequence${index.toString().padStart(3, '0')}.jpg`
-)
+    // Set current frame
+    const currentFrame = index => (
+        imageLocation + index.toString().padStart(4, '0') + '.jpg'
+    )
 
-const frameCount = 149;
-
-canvas.height = 1080;
-canvas.width = 1920;
-
-// Create image object, set img source to frame one and draw it
-const img = new Image();
-img.src = currentFrame(1);
-img.onload = function(){
-    context.drawImage(img, 0, 0);
-}
-
-// Function to update image
-const updateImage = index => {
-    img.src = currentFrame(index);
-    context.drawImage(img, 0, 0);
-}
-
-// What happens each scroll tick
-window.addEventListener('scroll', () =>{
-    const scrollTop = -y2022Track.getBoundingClientRect().top;
-    const maxScrollTop = y2022Track.getBoundingClientRect().height - window.innerHeight;
-    const scrollFraction = scrollTop / maxScrollTop;
-
-    // If we are within the bounds of the animation window
-    if (scrollFraction >= 0 && scrollFraction <= 1){
-        const frameIndex = Math.min(
-            frameCount - 1,
-            Math.floor(scrollFraction * frameCount)
-        );
-
-        requestAnimationFrame( () => updateImage(frameIndex + 1));
+    // Create image object, set img source to frame one and draw it
+    const img = new Image();
+    img.src = currentFrame(1);
+    img.onload = function(){
+        context.drawImage(img, 0, 0);
     }
-})
 
-// Preload images to prevent lag while scrolling
-const preloadImages = () => {
-    for (let i = 1; i < frameCount; i++){
-        const img = new Image();
-        img.src = currentFrame(i);
+    // Function to update image
+    const updateImage = index => {
+        img.src = currentFrame(index);
+        context.drawImage(img, 0, 0);
     }
+
+    // What happens each scroll tick
+    window.addEventListener('scroll', () =>{
+        const scrollTop = -track.getBoundingClientRect().top + window.innerHeight;
+        const maxScrollTop = track.getBoundingClientRect().height;
+        const scrollFraction = scrollTop / maxScrollTop;
+        console.log(scrollFraction);
+
+        // If we are within the bounds of the animation window
+        if (scrollFraction >= 0 && scrollFraction <= 1){
+            const frameIndex = Math.min(
+                frameCount - 1,
+                Math.floor(scrollFraction * frameCount)
+                
+            );
+            // console.log(scrollFraction * frameCount);
+            // console.log(frameIndex);
+            requestAnimationFrame( () => updateImage(frameIndex + 1));
+        }
+    })
+
+    // Preload images to prevent lag while scrolling
+    const preloadImages = () => {
+        for (let i = 1; i < frameCount; i++){
+            const img = new Image();
+            img.src = currentFrame(i);
+        }
+    }
+
+    preloadImages();
 }
 
-preloadImages();
+const transitions = document.getElementsByClassName('transition');
+for(let i = 0; i < transitions.length; i++){
+    animateTransition(transitions[i]);
+}
+// animateTransition(transitions[2]);
+
+function animateTransition(track) {
+    const dots = track.querySelectorAll('.px-frame div');
+    
+    window.addEventListener('scroll', () => {
+        const trackPosition = track.getBoundingClientRect().top;
+        const trackHeight = track.getBoundingClientRect().height;
+        let scrollFraction = trackPosition / trackHeight;
+
+        // console.log(dots);
+        for(let i = 0; i < dots.length; i++){
+            // dotPosition[i] = dots[i].getBoundingClientRect().top - window.innerHeight/2;
+            // console.log('' + i + ': ' + (dots[i].getBoundingClientRect().top - window.innerHeight/4));
+            if((dots[i].getBoundingClientRect().top - window.innerHeight/1.5) < 0){
+                dots[i].querySelector('.content').style.opacity = '100%';
+            } else {
+                dots[i].querySelector('.content').style.opacity = '0%';
+            }
+        }
+    })
+}
 
 console.log('All JS Loaded');

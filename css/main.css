@@ -194,6 +194,9 @@ p {
 .black{
     color: #000;
 }
+.darkgrey{
+    color: #474747;
+}
 
 /* -=+=================+=- */
 /* -=+=- BREAKPOINTS -=+=- */
@@ -477,6 +480,7 @@ p {
     display: flex;
     justify-content: center;
     margin: 5% 0;
+    height: 10%;
 }
 .transition img{
     width: 10%;
@@ -489,7 +493,10 @@ p {
 
     /* margin: 2.5% 0 5% 0; */
 }
-
+.transition .content {
+    opacity: 0%;
+    transition: opacity 0.25s linear;
+}
 /* -=+==========+=- */
 /* -=+=- 2013 -=+=- */
 /* -=+==========+=- */
@@ -778,7 +785,7 @@ p {
 .y2016 .hero-wrap{
     top: calc(270%/8.1);
 }
-.y2016 .floaters img:nth-child(1){
+/* .y2016 .floaters img:nth-child(1){
     width: calc(333%/14.40);
 
     left: calc(681%/14.40);
@@ -801,8 +808,89 @@ p {
 
     left: calc(146%/14.40);
     top: calc(320%/8.10);
+} */
+
+.gensler .floaters img:nth-child(1){
+    width: calc(333%/14.40);
+
+    left: calc(681%/14.40);
+    top: calc(501%/8.10);
 }
+.gensler .floaters img:nth-child(2){
+    width: calc(320%/14.40);
+
+    left: calc(99%/14.40);
+    top: calc(110%/8.10);
+}
+.gensler .floaters img:nth-child(3){
+    width: calc(210%/14.40);
+
+    left: calc(146%/14.40);
+    top: calc(200%/8.10);
+}
+
+.zaha .floaters img:nth-child(1){
+    width: calc(225%/14.40);
+
+    left: calc(681%/14.40);
+    top: calc(164%/8.10);
+}
+.zaha .floaters img:nth-child(2){
+    width: calc(195%/14.40);
+
+    left: calc(99%/14.40);
+    top: calc(466%/8.10);
+}
+.zaha .floaters img:nth-child(3){
+    width: calc(187%/14.40);
+
+    left: calc(146%/14.40);
+    top: calc(451%/8.10);
+}
+.zaha .floaters img:nth-child(4){
+    width: calc(314%/14.40);
+
+    left: calc(146%/14.40);
+    top: calc(542%/8.10);
+}
+
+.wiscombe .floaters img:nth-child(1){
+    width: calc(245%/14.40);
+
+    left: calc(681%/14.40);
+    top: calc(164%/8.10);
+}
+.wiscombe .floaters img:nth-child(2){
+    width: calc(275%/14.40);
+
+    left: calc(681%/14.40);
+    top: calc(520%/8.10);
+}
+.wiscombe .floaters img:nth-child(3){
+    width: calc(225%/14.40);
+
+    left: calc(681%/14.40);
+    top: calc(450%/8.10);
+}
+.wiscombe .floaters img:nth-child(4){
+    width: calc(240%/14.40);
+
+    left: calc(681%/14.40);
+    top: calc(570%/8.10);
+}
+
 /* 2017 */
+.y2017 {
+    height: 500vw;
+}
+.y2017 .frame{
+    position: relative;
+    left: 0;
+}
+.y2017 .silverlake-canvas{
+    object-fit: cover;
+    width: 100%;
+}
 
 /* 2018 */
 
@@ -847,7 +935,10 @@ p {
     left: 0vw;
 }
 .dubai-project-animation {
+    height: 90%;
     width: 100%;
+
+    object-fit: contain; 
 }
 
 /* SCROLLBAR STYLE */
