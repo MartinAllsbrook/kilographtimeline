@@ -16,87 +16,104 @@ body {
 /* -=+============+=- */
 /* -=+=- BASICS -=+=- */
 /* -=+============+=- */
-.year {
-    min-width: 100%;
-    min-height: 100vh;
-}
-.camera {
-    width: 100%;
-    height: 100vh;
 
-    overflow: hidden;
-    position: sticky;
-    top: 0;
-}
-.frame{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Widest sections - What is accually being scrolled thoughught the timline */
+    .year {
+        min-width: 100%;
+        min-height: 100vh;
+    }
+    /* Holds Frame within the viewport */
+    .camera {
+        width: 100%;
+        height: 100vh;
 
-    position: fixed;
-    left: 100%;
-    top: 0;
+        overflow: hidden;
+        position: sticky;
+        top: 0;
+    }
+    /* Contains content and can be easily moved for horizontal scrolling */
+    .frame{
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    width: 100%;
-    height: 100%;
-}
-.px-frame{
-    width: 2400px;
-    height: 1350px;
+        position: fixed;
+        left: 100%;
+        top: 0;
 
-    position: relative;
-}
-.center-align{
-    display: flex;
-    justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+    /* THIS IS IMPORTANT, RESEIZED BASED ON SCREEN SIZE ALOWING ALL CONTENT WITHIN IT TO USED PERSENTAGE
+    BASED WIDTH AND HEIGHT. Essentially anything using % within one of these does not need responsive resizing! */
+    .px-frame{
+        width: 2400px;
+        height: 1350px;
 
-    width: 100%;
-    height: 100vh;
-}
-.center-column{
-    display: flex;
-    justify-content: center;
-    
-    width: 100%;
-}
-.center-row{
-    display: flex;
-    align-items: center;
+        position: relative;
+    }
+    .center-align{
+        display: flex;
+        justify-content: center;
 
-    height: 100%;
-    width: 100%;
-}
-.hero-wrap{
-    display: flex;
-    position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+    /* Centers content's hroizontal position */
+    .center-horizontal{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    /* Centers content's verical position */
+    .center-vertical{
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    .center-row{
+        display: flex;
+        align-items: center;
 
-    width: 61.8%;
-}
-.hero-wrap video{
-    width: 61.8%;
-    height: fit-content;
-    display: block;
-    flex-shrink: 1;
-    position: relative;
-}
-.hero-wrap img{
-    width: 61.8%;
-    height: fit-content;
-    display: block;
-    flex-shrink: 1;
-    position: relative;
-}
-.text-wrap{
-    width: 38.2%;
-    flex-shrink: 1;
-    position: relative;
-    
-    margin: 0 0 0 16px;
-}
-.floaters img{
-    position: absolute;
-    height: fit-content;
-}
+        height: 100%;
+        width: 100%;
+    }
+    /* Sizes the content */
+    .hero-wrap{
+        display: flex;
+        position: relative;
+
+        width: 61.8%;
+    }
+    /* Larger hero wrap for content with no floaters */
+    .solo-hero{
+        width: 80%;
+    }
+    .hero-wrap video{
+        width: 61.8%;
+        height: fit-content;
+        display: block;
+        flex-shrink: 1;
+        position: relative;
+    }
+    .hero-wrap img{
+        width: 61.8%;
+        height: fit-content;
+        display: block;
+        flex-shrink: 1;
+        position: relative;
+    }
+    .text-wrap{
+        width: 38.2%;
+        flex-shrink: 1;
+        position: relative;
+        
+        margin: 0 0 0 32px;
+    }
+    .floaters img{
+        position: absolute;
+        height: fit-content;
+    }
 
 /* -=+================+=- */
 /* -=+=- TEXT STYLE -=+=- */
@@ -115,6 +132,18 @@ h1{
     padding: 0;
 }
 h2 {
+    font-size: 220px;
+
+    font-family: 'IvyJournal', serif;
+    font-style: normal;
+    font-weight: 600;
+    text-align: left;
+    color: #FFEF00;
+
+    margin: 0;
+    padding: 0;
+}
+h3 {
     font-size: 136px;
 
     font-family: 'IvyJournal', serif;
@@ -126,20 +155,8 @@ h2 {
     margin: 0;
     padding: 0;
 }
-h3 {
-    font-size: 84px;
-
-    font-family: 'IvyJournal', serif;
-    font-style: normal;
-    font-weight: 400;
-    text-align: left;
-    color: #FFEF00;
-
-    margin: 0;
-    padding: 0;
-}
 h4 {
-    font-size: 52px;
+    font-size: 84px;
 
     font-family: 'IvyJournal', serif;
     font-style: normal;
@@ -152,7 +169,7 @@ h4 {
     padding: 0;
 }
 h5 {
-    font-size: 32px;
+    font-size: 52px;
 
     font-family: 'IvyJournal', serif;
     font-style: normal;
@@ -164,7 +181,7 @@ h5 {
     padding: 0;
 }
 h6 {
-    font-size: 20px;
+    font-size: 32px;
 
     font-family: 'Poppins', sans-serif;
     font-style: normal;
@@ -183,13 +200,13 @@ p {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 130%;
     margin: 0;
     padding: 0;
 }
 .yellow{
-    color: #C4C4C4;
+    color: #FFEF00;
 }
 .black{
     color: #000;
@@ -223,6 +240,30 @@ p {
     .px-frame{
         width: 1440px;
         height: 810px;
+    }
+    .text-wrap{
+        margin: 0 0 0 16px;
+    }
+    h1{
+        font-size: 220px;
+    }
+    h2 {
+        font-size: 136px;
+    }
+    h3 {
+        font-size: 84px;
+    }
+    h4 {
+        font-size: 52px;
+    }
+    h5 {
+        font-size: 32px;
+    }
+    h6 {
+        font-size: 20px;
+    }
+    p {
+        font-size: 12px;
     }
 }
 @media screen and (max-width: 1440px) {
@@ -414,13 +455,13 @@ p {
     margin: 0 0 0 0;
     overflow: hidden;
 }
-.y2012 h1 {
+.y2012 h2 {
     color: #000;
 
     width: 1080px;
-    /* height: 240px; */
+    height: 264px;
 }
-.y2012 h4 {
+.y2012 h5 {
     line-height: 120%;
     color: #000;
 
@@ -670,7 +711,7 @@ p {
     display: block;
     position: relative;
     
-    width: 61.8%;
+    /* width: 61.8%; */
 }
 .halloween .top {
     height: 38.2%;
@@ -879,7 +920,9 @@ p {
     top: calc(570%/8.10);
 }
 
-/* 2017 */
+/* -=+==========+=- */
+/* -=+=- 2017 -=+=- */
+/* -=+==========+=- */
 .y2017 {
     height: 500vw;
 }
@@ -892,15 +935,25 @@ p {
     width: 100%;
 }
 
-/* 2018 */
+/* -=+==========+=- */
+/* -=+=- 2018 -=+=- */
+/* -=+==========+=- */
 
-/* 2019 */
+/* -=+==========+=- */
+/* -=+=- 2019 -=+=- */
+/* -=+==========+=- */
 
-/* 2020 */
+/* -=+==========+=- */
+/* -=+=- 2020 -=+=- */
+/* -=+==========+=- */
 
-/* 2021 */
+/* -=+==========+=- */
+/* -=+=- 2021 -=+=- */
+/* -=+==========+=- */
 
-/* 2022 */
+/* -=+==========+=- */
+/* -=+=- 2022 -=+=- */
+/* -=+==========+=- */
 :root{
     --y2022-anim-length: 250vw;
 }
@@ -989,4 +1042,6 @@ footer {
 .footer-date h6{
     line-height: 50%;
     color: #252525;
+
+    font-size: 20px;
 }

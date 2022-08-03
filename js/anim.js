@@ -1,95 +1,103 @@
 const html = document.documentElement;
 
 // Footer progress bar animation
-const footerFill = document.getElementsByClassName('footer-fill')[0];
+{
+    const footerFill = document.getElementsByClassName('footer-fill')[0];
+    window.addEventListener('scroll', () => {  
+        const scrollTop = html.scrollTop;
+        const maxScrollTop = html.scrollHeight - window.innerHeight;
+        const scrollFraction = scrollTop / maxScrollTop;
+        const viewportWidth = window.innerWidth;
 
-window.addEventListener('scroll', () => {  
-    const scrollTop = html.scrollTop;
-    const maxScrollTop = html.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollTop / maxScrollTop;
-    const viewportWidth = window.innerWidth;
-
-    const fillWidth = Math.min(
-        viewportWidth,
-        Math.floor(scrollFraction * viewportWidth)
-    );
-    footerFill.style.width = fillWidth.toString() + 'px';
-});
-
-// Intro Possibilities Animation
-const possibilitiesTrack = document.getElementsByClassName('possibilities')[0];
-const possibilitiesFrame = document.querySelector('.possibilities .poss-frame');
-const yearsOfHolder = document.getElementsByClassName('years-of-holder')[0];
-
-window.addEventListener('scroll', () => {
-    const scrollTop = -(possibilitiesTrack.getBoundingClientRect().top);
-    const maxScrollTop = possibilitiesTrack.getBoundingClientRect().height - window.innerHeight;
-    let scrollFraction = scrollTop / maxScrollTop;
-
-    if(scrollFraction <= 0) {
-        scrollFraction = 0;
-    }else if(scrollFraction >= 1) {
-        scrollFraction = 1;
-    }
-    // console.log(scrollFraction);
-
-    const moveDistance = -(document.querySelector('.possibilities img').offsetWidth);
-    const moveEnd = 0.85;
-
-    let pxTotal = 0;
-    if(scrollFraction <= moveEnd){
-        pxTotal = moveDistance * (scrollFraction / moveEnd);
-    } else {
-        pxTotal = moveDistance;
-    }
-
-    possibilitiesFrame.style.left = pxTotal.toString() + 'px';
-    yearsOfHolder.style.left = pxTotal.toString() + 'px';
-})
-
-// 2012 News
-const y2012 = document.getElementsByClassName('y2012')[0];
-const content = 'Kilograph’s Renderings of Cornell’s new High Tech Campus are featured in the New York Times';
-const content2 = 'Kilograph’s Renderings were featured by the NYT once again in 2015'
-let entered = false;
-let entered1 = false;
-let entered2 = false;
-const typewriters = document.getElementsByClassName('typewriter');
-
-window.addEventListener('scroll', () => {
-
-
-    const position = y2012.getBoundingClientRect().top - window.innerHeight*5/6;
-
-
-    if(position <= 0 && position >= (-window.innerHeight) && entered == false){
-        document.getElementsByTagName('body')[0].style.backgroundColor = 'white';
-        writeText('2012', typewriters[0], 100, 0);
-        entered = true;
-    }
-
-    if(typewriters[1].getBoundingClientRect().top - window.innerHeight*5/6 <= 0 && entered1 == false){
-        writeText(content, typewriters[1], 25, 0);
-        entered1 = true;
-    }
-
-    if(typewriters[2].getBoundingClientRect().top - window.innerHeight*5/6 <= 0 && entered2 == false){
-        writeText(content2, typewriters[2], 25, 0);
-        entered2 = true;
-    }
-})
-
-function writeText(content, typewriter, typeSpeed, index) {
-    setTimeout(function onTick() {
-        if(index < content.length){
-            typewriter.innerHTML += content[index];
-            index++;
-            writeText(content, typewriter, typeSpeed, index)
-        }
-    }, typeSpeed);
+        const fillWidth = Math.min(
+            viewportWidth,
+            Math.floor(scrollFraction * viewportWidth)
+        );
+        footerFill.style.width = fillWidth.toString() + 'px';
+    });
 }
 
+// Intro Possibilities Animation
+{
+    const possibilitiesTrack = document.getElementsByClassName('possibilities')[0];
+    const possibilitiesFrame = document.querySelector('.possibilities .poss-frame');
+    const yearsOfHolder = document.getElementsByClassName('years-of-holder')[0];
+    window.addEventListener('scroll', () => {
+        const scrollTop = -(possibilitiesTrack.getBoundingClientRect().top);
+        const maxScrollTop = possibilitiesTrack.getBoundingClientRect().height - window.innerHeight;
+        let scrollFraction = scrollTop / maxScrollTop;
 
+        if(scrollFraction <= 0) {
+            scrollFraction = 0;
+        }else if(scrollFraction >= 1) {
+            scrollFraction = 1;
+        }
+
+        const moveDistance = -(document.querySelector('.possibilities img').offsetWidth);
+        const moveEnd = 0.85;
+
+        let pxTotal = 0;
+        if(scrollFraction <= moveEnd){
+            pxTotal = moveDistance * (scrollFraction / moveEnd);
+        } else {
+            pxTotal = moveDistance;
+        }
+
+        possibilitiesFrame.style.left = pxTotal.toString() + 'px';
+        yearsOfHolder.style.left = pxTotal.toString() + 'px';
+    })
+}
+
+// 2012 News
+{
+    const y2012 = document.getElementsByClassName('y2012')[0];
+    const content = 'Kilograph’s Renderings of Cornell’s new High Tech Campus are featured in the New York Times';
+    const content2 = 'Kilograph’s Renderings were featured by the NYT once again in 2015'
+    let entered = false;
+    let entered1 = false;
+    let entered2 = false;
+    const typewriters = document.getElementsByClassName('typewriter');
+    window.addEventListener('scroll', () => {
+    
+    
+        const position = y2012.getBoundingClientRect().top - window.innerHeight*5/6;
+    
+    
+        if(position <= 0 && position >= (-window.innerHeight) && entered == false){
+            document.getElementsByTagName('body')[0].style.backgroundColor = 'white';
+            writeText('2012', typewriters[0], 100, 0);
+            entered = true;
+        }else if(position > 0){
+            document.getElementsByTagName('body')[0].style.backgroundColor = '#252525';
+            entered = false;
+            entered1 = false;
+            entered2 = false;
+            typewriters[0].innerHTML = '';
+            typewriters[1].innerHTML = '';
+            typewriters[2].innerHTML = '';
+        }
+    
+        if(typewriters[1].getBoundingClientRect().top - window.innerHeight*5/6 <= 0 && entered1 == false){
+            writeText(content, typewriters[1], 25, 0);
+            entered1 = true;
+        }
+    
+        if(typewriters[2].getBoundingClientRect().top - window.innerHeight*5/6 <= 0 && entered2 == false){
+            writeText(content2, typewriters[2], 25, 0);
+            entered2 = true;
+        }
+    })
+    
+    function writeText(content, typewriter, typeSpeed, index) {
+        setTimeout(function onTick() {
+            if(index < content.length){
+                typewriter.innerHTML += content[index];
+                index++;
+                writeText(content, typewriter, typeSpeed, index)
+            }
+        }, typeSpeed);
+    }
+}
 
 // 2013
 {
@@ -97,12 +105,11 @@ function writeText(content, typewriter, typeSpeed, index) {
     const frame = document.querySelector('.y2013 .frame');
     const nestedFrame = document.getElementsByClassName('collage')[0];
     const panStart = 0.2;
-    const panEnd = 0.8;
+    const panEnd = 0.75;
     window.addEventListener('scroll', () => {
         const trackPosition = -track.getBoundingClientRect().top;
         const trackHeight = track.getBoundingClientRect().height - window.innerHeight;
         let scrollFraction = trackPosition / trackHeight;
-        // console.log(scrollFraction);
 
         let collageSize = 450,
             leftPercent = 0;
@@ -138,19 +145,6 @@ function writeText(content, typewriter, typeSpeed, index) {
         nestedFrame.style.height = collageSize.toString() + '%';
     });
 }
-//         y2013Frame.style.width = '100vw';
-//         y2013Frame.style.height = '100vh';
-//     }else if(scrollFraction < panEnd){
-//         const left = -panTotal * (scrollFraction - panStart);
-//         y2013Frame.style.left = left.toString() + 'px';
-//     }else if(scrollFraction < 0.93 && scrollFraction > panEnd){
-//         document.getElementsByTagName('body')[0].style.backgroundColor = 'white'
-//         y2013Frame.style.display = 'block';
-//     }else if(scrollFraction > 0.93 && scrollFraction < 1) {
-//         document.getElementsByTagName('body')[0].style.backgroundColor = '#252525'
-//         y2013Frame.style.display = 'none';
-//     }
-// });
 
 // Halloween
 {
@@ -159,25 +153,24 @@ function writeText(content, typewriter, typeSpeed, index) {
     const pxframe = document.querySelector('.halloween .px-frame');
     window.addEventListener('scroll', () => {
         const trackPosition = -track.getBoundingClientRect().top;
-        const trackHeight = track.getBoundingClientRect().height - 4 * window.innerHeight;
+        const trackHeight = track.getBoundingClientRect().height - 4*window.innerHeight;
         let scrollFraction = trackPosition / trackHeight;
 
         if(scrollFraction < 1) {
             if(scrollFraction <= 0) {
                 scrollFraction = 0;
             }
-            let leftPercent = (scrollFraction) * -200;
+            let leftPercent = (scrollFraction) * -125;
             frame.style.left = leftPercent.toString() + '%';
             pxframe.style.left = '0%';
         }else if(scrollFraction >= 1) {
             // scrollFraction = 1;
             let leftPercent = (scrollFraction - 1) * -200;
-            frame.style.left = '-200%';
+            frame.style.left = '-125%';
             pxframe.style.left = leftPercent.toString() + '%';
         }
     });
 }
-
 
 // 2014 parralax
 window.addEventListener('scroll', () => basicParralax(
@@ -208,7 +201,6 @@ window.addEventListener('scroll', () => basicParralax(
         const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
         const trackHeight = track.getBoundingClientRect().height;
         const scrollFraction = trackPosition / trackHeight;
-        // console.log(scrollFraction);
 
         // Create the value that will move the frame
         let leftPercent = (scrollFraction - 0.5) * -100;
@@ -255,6 +247,19 @@ animateImages(
     'assets/2022/earth-image-sequence/'
 );
 
+
+fadeIn(
+    document.querySelectorAll('.transition .content'), 
+    2/3, 
+    '0.25s'
+);
+fadeIn(
+    document.getElementsByClassName('solo-hero'), 
+    2/3, 
+    '0.25s'
+);
+
+
 function basicParralax(track, frame, floaters, floatersInit) {
     // basic constants from inputs
     const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
@@ -299,7 +304,6 @@ function animateImages(canvas, track, frameCount, imageLocation){
         const scrollTop = -track.getBoundingClientRect().top + window.innerHeight;
         const maxScrollTop = track.getBoundingClientRect().height;
         const scrollFraction = scrollTop / maxScrollTop;
-        console.log(scrollFraction);
 
         // If we are within the bounds of the animation window
         if (scrollFraction >= 0 && scrollFraction <= 1){
@@ -308,8 +312,7 @@ function animateImages(canvas, track, frameCount, imageLocation){
                 Math.floor(scrollFraction * frameCount)
                 
             );
-            // console.log(scrollFraction * frameCount);
-            // console.log(frameIndex);
+        
             requestAnimationFrame( () => updateImage(frameIndex + 1));
         }
     })
@@ -325,31 +328,22 @@ function animateImages(canvas, track, frameCount, imageLocation){
     preloadImages();
 }
 
-const transitions = document.getElementsByClassName('transition');
-for(let i = 0; i < transitions.length; i++){
-    animateTransition(transitions[i]);
-}
-// animateTransition(transitions[2]);
+function fadeIn(elements, screenPercent, time) {
+    for(let i = 0; i < elements.length; i++){
+        // Make element opacity fade
+        elements[i].style.transition = 'opacity '+ time +' linear';
 
-function animateTransition(track) {
-    const dots = track.querySelectorAll('.px-frame div');
-    
-    window.addEventListener('scroll', () => {
-        const trackPosition = track.getBoundingClientRect().top;
-        const trackHeight = track.getBoundingClientRect().height;
-        let scrollFraction = trackPosition / trackHeight;
-
-        // console.log(dots);
-        for(let i = 0; i < dots.length; i++){
-            // dotPosition[i] = dots[i].getBoundingClientRect().top - window.innerHeight/2;
-            // console.log('' + i + ': ' + (dots[i].getBoundingClientRect().top - window.innerHeight/4));
-            if((dots[i].getBoundingClientRect().top - window.innerHeight/1.5) < 0){
-                dots[i].querySelector('.content').style.opacity = '100%';
+        // Raise / lower opacity at the right point
+        window.addEventListener('scroll', () => {
+            const elementPosition = elements[i].getBoundingClientRect().top;
+            if(elementPosition < window.innerHeight*screenPercent){
+                elements[i].style.opacity = '100%';
             } else {
-                dots[i].querySelector('.content').style.opacity = '0%';
+                elements[i].style.opacity = '0%';
             }
-        }
-    })
+        });
+    }
+
 }
 
 console.log('All JS Loaded');
