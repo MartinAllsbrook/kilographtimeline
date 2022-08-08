@@ -17,103 +17,121 @@ body {
 /* -=+=- BASICS -=+=- */
 /* -=+============+=- */
 
-    /* Widest sections - What is accually being scrolled thoughught the timline */
-    .year {
-        min-width: 100%;
-        min-height: 100vh;
-    }
-    /* Holds Frame within the viewport */
-    .camera {
-        width: 100%;
-        height: 100vh;
+/* Widest sections - What is accually being scrolled thoughught the timline */
+.track {
+    position: relative;
+    min-width: 100%;
+    min-height: 100vh;
 
-        overflow: hidden;
-        position: sticky;
-        top: 0;
-    }
-    /* Contains content and can be easily moved for horizontal scrolling */
-    .frame{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    /* border: 1px solid #FFEF00; */
+}
+/* Holds Frame within the viewport */
+/* THIS IS NOT NESCECARY WHEN USING A FIXED FRAME!!!!!! */
+.camera {
+    width: 100%;
+    height: 100vh;
 
-        position: fixed;
-        left: 100%;
-        top: 0;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+}
+/* Contains content and can be easily moved for horizontal scrolling */
+.frame{
+    position: fixed;
+    left: 100%;
+    top: 0;
 
-        width: 100%;
-        height: 100%;
-    }
-    /* THIS IS IMPORTANT, RESEIZED BASED ON SCREEN SIZE ALOWING ALL CONTENT WITHIN IT TO USED PERSENTAGE
-    BASED WIDTH AND HEIGHT. Essentially anything using % within one of these does not need responsive resizing! */
-    .px-frame{
-        width: 2400px;
-        height: 1350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        position: relative;
-    }
-    .center-align{
-        display: flex;
-        justify-content: center;
+    width: 100%;
+    height: 100%;
 
-        width: 100%;
-        height: 100vh;
-    }
-    /* Centers content's hroizontal position */
-    .center-horizontal{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-    /* Centers content's verical position */
-    .center-vertical{
-        display: flex;
-        align-items: center;
-        height: 100%;
-    }
-    .center-row{
-        display: flex;
-        align-items: center;
+    /* border: 1px solid red; */
+}
+.parallax-layer{
+    width: 100%;
+    height: 100%;
 
-        height: 100%;
-        width: 100%;
-    }
-    /* Sizes the content */
-    .hero-wrap{
-        display: flex;
-        position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        width: 61.8%;
-    }
-    /* Larger hero wrap for content with no floaters */
-    .solo-hero{
-        width: 80%;
-    }
-    .hero-wrap video{
-        width: 61.8%;
-        height: fit-content;
-        display: block;
-        flex-shrink: 1;
-        position: relative;
-    }
-    .hero-wrap img{
-        width: 61.8%;
-        height: fit-content;
-        display: block;
-        flex-shrink: 1;
-        position: relative;
-    }
-    .text-wrap{
-        width: 38.2%;
-        flex-shrink: 1;
-        position: relative;
-        
-        margin: 0 0 0 32px;
-    }
-    .floaters img{
-        position: absolute;
-        height: fit-content;
-    }
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+/* THIS IS IMPORTANT, RESEIZED BASED ON SCREEN SIZE ALOWING ALL CONTENT WITHIN IT TO USED PERSENTAGE
+BASED WIDTH AND HEIGHT. Essentially anything using % within one of these does not need responsive resizing! */
+.px-frame{
+    width: 2400px;
+    height: 1350px;
+
+    position: relative;
+}                         
+.center-align{
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 100vh;
+}
+/* Centers content's hroizontal position */
+.center-horizontal{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+/* Centers content's verical position */
+.center-vertical{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.center-row{
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+}
+/* Sizes the content */
+.hero-wrap{
+    display: flex;
+    position: relative;
+
+    width: 61.8%;
+}
+/* Larger hero wrap for content with no floaters */
+.solo-hero{
+    width: 80%;
+}
+.hero-wrap video{
+    width: 61.8%;
+    height: fit-content;
+    display: block;
+    flex-shrink: 1;
+    position: relative;
+}
+.hero-wrap img{
+    width: 61.8%;
+    height: fit-content;
+    display: block;
+    flex-shrink: 1;
+    position: relative;
+}
+.text-wrap{
+    width: 38.2%;
+    flex-shrink: 1;
+    position: relative;
+    
+    margin: 0 0 0 32px;
+}
+.floaters img{
+    position: absolute;
+    height: fit-content;
+}
 
 /* -=+================+=- */
 /* -=+=- TEXT STYLE -=+=- */
