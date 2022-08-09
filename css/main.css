@@ -17,16 +17,13 @@ body {
 /* -=+=- BASICS -=+=- */
 /* -=+============+=- */
 
-/* Widest sections - What is accually being scrolled thoughught the timline */
 .track {
     position: relative;
     min-width: 100%;
     min-height: 100vh;
 
-    /* border: 1px solid #FFEF00; */
+    border: 1px solid #FFEF00;
 }
-/* Holds Frame within the viewport */
-/* THIS IS NOT NESCECARY WHEN USING A FIXED FRAME!!!!!! */
 .camera {
     width: 100%;
     height: 100vh;
@@ -35,7 +32,6 @@ body {
     position: sticky;
     top: 0;
 }
-/* Contains content and can be easily moved for horizontal scrolling */
 .frame{
     position: fixed;
     left: 100%;
@@ -48,7 +44,19 @@ body {
     width: 100%;
     height: 100%;
 
-    /* border: 1px solid red; */
+    border: 1px solid red;
+}
+.animation-frame{
+    position: relative;
+    left: 0;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
 }
 .parallax-layer{
     width: 100%;
@@ -62,8 +70,6 @@ body {
     top: 0%;
     left: 0%;
 }
-/* THIS IS IMPORTANT, RESEIZED BASED ON SCREEN SIZE ALOWING ALL CONTENT WITHIN IT TO USED PERSENTAGE
-BASED WIDTH AND HEIGHT. Essentially anything using % within one of these does not need responsive resizing! */
 .px-frame{
     width: 2400px;
     height: 1350px;
@@ -73,6 +79,7 @@ BASED WIDTH AND HEIGHT. Essentially anything using % within one of these does no
 .center-align{
     display: flex;
     justify-content: center;
+    align-items: center;
 
     width: 100%;
     height: 100vh;
@@ -102,6 +109,7 @@ BASED WIDTH AND HEIGHT. Essentially anything using % within one of these does no
     position: relative;
 
     width: 61.8%;
+    height: fit-content;
 }
 /* Larger hero wrap for content with no floaters */
 .solo-hero{
@@ -117,7 +125,7 @@ BASED WIDTH AND HEIGHT. Essentially anything using % within one of these does no
 .hero-wrap img{
     width: 61.8%;
     height: fit-content;
-    display: block;
+    /* display: ; */
     flex-shrink: 1;
     position: relative;
 }
@@ -131,6 +139,12 @@ BASED WIDTH AND HEIGHT. Essentially anything using % within one of these does no
 .floaters img{
     position: absolute;
     height: fit-content;
+}
+.track .frame .parallax-layer:nth-child(1){
+    
+}
+.track .frame .parallax-layer:nth-child(n+2) img{
+    position: absolute;
 }
 
 /* -=+================+=- */
@@ -562,7 +576,9 @@ p {
 .y2013{
     position: relative;
     width: 100vw;
-    height: 500vw;
+    height: 200vh;
+
+    margin-bottom: 75vh;
 }
 .y2013 .camera{
     display: flex;
@@ -612,6 +628,12 @@ p {
 
     width: 33.125%;
     height: 21.8518%;
+}
+.jackolantern-animation {
+    height: 90%;
+    width: 100%;
+
+    object-fit: contain; 
 }
 
 /* Collage Style */
@@ -703,13 +725,7 @@ p {
 /* -=+===============+=- */
 /* -=+=- Halloween -=+=- */
 /* -=+===============+=- */
-.jackolantern{
-    width: 110%;
 
-    position: absolute;
-    bottom: 0;
-    left: -5%;
-}
 .halloween{
     height: 500vw;
     margin-bottom: -120vw;
@@ -752,31 +768,22 @@ p {
     margin: 0 2% 0 0;
 }
 
-/* :root {
-    --verticalCorrect: 150vw;
-} */
 /* -=+==========+=- */
 /* -=+=- 2014 -=+=- */
 /* -=+==========+=- */
-.y2014{
-    height: 150vw;
-}
-.y2014 .hero-wrap{
-    top: 29.5%;
-}
-.y2014 .floaters img:nth-child(1){
+.y2014 .parallax-layer:nth-child(2) img:nth-child(1){
     width: calc(231%/14.40);
 
     left: calc(681%/14.40);
     top: calc(531%/8.10);
 }
-.y2014 .floaters img:nth-child(2){
+.y2014 .parallax-layer:nth-child(2) img:nth-child(2){
     width: calc(304%/14.40);
 
     left: calc(99%/14.40);
     top: calc(118%/8.10);
 }
-.y2014 .floaters img:nth-child(3){
+.y2014 .parallax-layer:nth-child(2) img:nth-child(3){
     width: calc(210%/14.40);
     top: calc(550%/8.10);
 
@@ -786,14 +793,6 @@ p {
 /* -=+==========+=- */
 /* -=+=- 2015 -=+=- */
 /* -=+==========+=- */
-.y2015{
-    height: 150vw;
-
-    margin-bottom: 50vw;
-}
-.y2015 .hero-wrap{
-    top: calc(174%/8.1);
-}
 .y2015 .extra-hero{
     position: absolute;
 
@@ -801,25 +800,25 @@ p {
     left: calc(1131%/14.40);
     top: calc(441%/8.10);
 }
-.y2015 .floaters img:nth-child(1){
+.y2015 .parallax-layer:nth-child(2) img:nth-child(1){
     width: calc(231%/14.40);
 
     left: calc(681%/14.40);
     top: calc(531%/8.10);
 }
-.y2015 .floaters img:nth-child(2){
+.y2015 .parallax-layer:nth-child(2) img:nth-child(2){
     width: calc(304%/14.40);
 
     left: calc(99%/14.40);
     top: calc(118%/8.10);
 }
-.y2015 .floaters img:nth-child(3){
+.y2015 .parallax-layer:nth-child(2) img:nth-child(3){
     width: calc(210%/14.40);
 
     left: calc(146%/14.40);
     top: calc(550%/8.10);
 }
-.y2015 .floaters img:nth-child(4){
+.y2015 .parallax-layer:nth-child(2) img:nth-child(4){
     width: calc(233%/14.40);
 
     left: calc(146%/14.40);
@@ -838,100 +837,70 @@ p {
     align-items: center;
 }
 
-.y2016{
-    height: 150vw;
-}
-.y2016 .hero-wrap{
-    top: calc(270%/8.1);
-}
-/* .y2016 .floaters img:nth-child(1){
+.gensler .parallax-layer:nth-child(2) img:nth-child(1){
     width: calc(333%/14.40);
 
     left: calc(681%/14.40);
     top: calc(501%/8.10);
 }
-.y2016 .floaters img:nth-child(2){
-    width: calc(320%/14.40);
-
-    left: calc(99%/14.40);
-    top: calc(96%/8.10);
-}
-.y2016 .floaters img:nth-child(3){
-    width: calc(210%/14.40);
-
-    left: calc(146%/14.40);
-    top: calc(550%/8.10);
-}
-.y2016 .floaters img:nth-child(4){
-    width: calc(233%/14.40);
-
-    left: calc(146%/14.40);
-    top: calc(320%/8.10);
-} */
-
-.gensler .floaters img:nth-child(1){
-    width: calc(333%/14.40);
-
-    left: calc(681%/14.40);
-    top: calc(501%/8.10);
-}
-.gensler .floaters img:nth-child(2){
+.gensler .parallax-layer:nth-child(2) img:nth-child(2){
     width: calc(320%/14.40);
 
     left: calc(99%/14.40);
     top: calc(110%/8.10);
 }
-.gensler .floaters img:nth-child(3){
+.gensler .parallax-layer:nth-child(2) img:nth-child(3){
     width: calc(210%/14.40);
 
     left: calc(146%/14.40);
     top: calc(200%/8.10);
 }
 
-.zaha .floaters img:nth-child(1){
+
+.zaha .parallax-layer:nth-child(2) img:nth-child(1){
     width: calc(225%/14.40);
 
     left: calc(681%/14.40);
     top: calc(164%/8.10);
 }
-.zaha .floaters img:nth-child(2){
+.zaha .parallax-layer:nth-child(2) img:nth-child(2){
     width: calc(195%/14.40);
 
     left: calc(99%/14.40);
     top: calc(466%/8.10);
 }
-.zaha .floaters img:nth-child(3){
+.zaha .parallax-layer:nth-child(2) img:nth-child(3){
     width: calc(187%/14.40);
 
     left: calc(146%/14.40);
     top: calc(451%/8.10);
 }
-.zaha .floaters img:nth-child(4){
+.zaha .parallax-layer:nth-child(2) img:nth-child(4){
     width: calc(314%/14.40);
 
     left: calc(146%/14.40);
     top: calc(542%/8.10);
 }
 
-.wiscombe .floaters img:nth-child(1){
+.wiscombe .parallax-layer:nth-child(2) img:nth-child(1){
     width: calc(245%/14.40);
 
     left: calc(681%/14.40);
     top: calc(164%/8.10);
 }
-.wiscombe .floaters img:nth-child(2){
+.wiscombe .parallax-layer:nth-child(2) img:nth-child(2){
     width: calc(275%/14.40);
 
     left: calc(681%/14.40);
     top: calc(520%/8.10);
 }
-.wiscombe .floaters img:nth-child(3){
+.wiscombe .parallax-layer:nth-child(2) img:nth-child(3){
     width: calc(225%/14.40);
 
     left: calc(681%/14.40);
     top: calc(450%/8.10);
 }
-.wiscombe .floaters img:nth-child(4){
+.wiscombe .parallax-layer:nth-child(2) img:nth-child(4){
     width: calc(240%/14.40);
 
     left: calc(681%/14.40);
@@ -972,39 +941,6 @@ p {
 /* -=+==========+=- */
 /* -=+=- 2022 -=+=- */
 /* -=+==========+=- */
-:root{
-    --y2022-anim-length: 250vw;
-}
-.y2022-track {
-    width: auto;
-    height: var(--y2022-anim-length);
-
-    position: static;
-
-    overflow: visible;
-}
-.y2022-camera {
-    width: 100%;
-    height: 100vh;
-
-    overflow: hidden;
-
-    position: sticky;
-    top: 0;
-}
-.y2022-frame {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-
-
-    width: auto;
-    height: 100%;
-
-    overflow: visible;
-    position: relative;
-    left: 0vw;
-}
 .dubai-project-animation {
     height: 90%;
     width: 100%;

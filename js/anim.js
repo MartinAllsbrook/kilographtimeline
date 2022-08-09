@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     const html = document.documentElement;
+    const body = document.getElementsByTagName('body')[0];
 
     // Footer progress bar animation
     {
@@ -46,55 +47,60 @@ window.addEventListener('DOMContentLoaded', () => {
 
             possibilitiesFrame.style.left = pxTotal.toString() + 'px';
             yearsOfHolder.style.left = pxTotal.toString() + 'px';
-        })
+        });
     }
+
+    // 2010 Quatar Airport City
+    createParallax(document.getElementsByClassName('y2010')[0]);
 
     // 2012 News
     {
-        const y2012 = document.getElementsByClassName('y2012')[0];
+        // Get elements, Create variables :)
+        const track = document.getElementsByClassName('y2012')[0];
+
         const content = 'Kilograph’s Renderings of Cornell’s new High Tech Campus are featured in the New York Times';
-        const content2 = 'Kilograph’s Renderings were featured by the NYT once again in 2015'
-        let entered = false;
-        let entered1 = false;
-        let entered2 = false;
+        // const content2 = 'Kilograph’s Renderings were featured by the NYT once again in 2015'
+        
         const typewriters = document.getElementsByClassName('typewriter');
+        
         window.addEventListener('scroll', () => {
-        
-        
-            const position = y2012.getBoundingClientRect().top - window.innerHeight*5/6;
-        
-        
-            if(position <= 0 && position >= (-window.innerHeight) && entered == false){
-                document.getElementsByTagName('body')[0].style.backgroundColor = 'white';
-                writeText('2012', typewriters[0], 100, 0);
-                entered = true;
-            }else if(position > 0){
-                document.getElementsByTagName('body')[0].style.backgroundColor = '#252525';
-                entered = false;
-                entered1 = false;
-                entered2 = false;
+            const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
+            const trackHeight = track.getBoundingClientRect().height;
+            const scrollFraction = trackPosition / trackHeight;
+
+            // Before
+            if(scrollFraction >= -1 && scrollFraction < 0){
+                body.style.backgroundColor = '#252525';
                 typewriters[0].innerHTML = '';
                 typewriters[1].innerHTML = '';
-                typewriters[2].innerHTML = '';
-            }
-        
-            if(typewriters[1].getBoundingClientRect().top - window.innerHeight*5/6 <= 0 && entered1 == false){
-                writeText(content, typewriters[1], 25, 0);
-                entered1 = true;
-            }
-        
-            if(typewriters[2].getBoundingClientRect().top - window.innerHeight*5/6 <= 0 && entered2 == false){
-                writeText(content2, typewriters[2], 25, 0);
-                entered2 = true;
+
+            // Durring
+            }else if(scrollFraction >= 0 && scrollFraction <= 1){
+                body.style.backgroundColor = 'white';
+
+                writeText(typewriters[0], '2012', 100);
+                writeText(typewriters[1], content, 25);
+
+
+            // After
+            }else if(scrollFraction > 1 && scrollFraction <= 2){
+                body.style.backgroundColor = '#252525';
             }
         })
         
-        function writeText(content, typewriter, typeSpeed, index) {
+        function writeText(element, content, typeSpeed){
+            if(element.innerHTML == ''){
+                element.innerHTML = content[0]; // Instratntly place the first character so that on next call the if statement returns false
+                writeChar(element, content, typeSpeed, 1); // Use writeChar to write the rest of the characters with a delay
+            }
+        }
+
+        function writeChar(element, content, typeSpeed, index) {
             setTimeout(function onTick() {
                 if(index < content.length){
-                    typewriter.innerHTML += content[index];
+                    element.innerHTML += content[index];
                     index++;
-                    writeText(content, typewriter, typeSpeed, index)
+                    writeChar(element, content, typeSpeed, index)
                 }
             }, typeSpeed);
         }
@@ -103,14 +109,16 @@ window.addEventListener('DOMContentLoaded', () => {
     // 2013
     {
         const track = document.getElementsByClassName('y2013')[0];
-        const frame = document.querySelector('.y2013 .frame');
+        const frame = track.getElementsByClassName('frame')[0];
         const nestedFrame = document.getElementsByClassName('collage')[0];
-        const panStart = 0.2;
-        const panEnd = 0.75;
+        const panStart = 0.5;
+        const panEnd = 1;
         window.addEventListener('scroll', () => {
             const trackPosition = -track.getBoundingClientRect().top;
-            const trackHeight = track.getBoundingClientRect().height - window.innerHeight;
+            const trackHeight = track.getBoundingClientRect().height;
             let scrollFraction = trackPosition / trackHeight;
+
+            console.log(scrollFraction)
 
             let collageSize = 450,
                 leftPercent = 0;
@@ -126,20 +134,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 leftPercent = 0;
 
             // Pan entire frame
-            }else if(scrollFraction >= panStart && scrollFraction < panEnd){
+            }else if(scrollFraction >= panStart){
+                frame.style.position = 'fixed';
+
                 collageSize = 100;
-                leftPercent = -180 * ((scrollFraction - panStart)/(panEnd - panStart));
-                document.getElementsByTagName('body')[0].style.backgroundColor = 'white';
-            
-            // Post pan actions
-            }else if(scrollFraction >= panEnd) {
-                collageSize = 100;
-                leftPercent = -180;
-                document.getElementsByTagName('body')[0].style.backgroundColor = '#252525';
+                leftPercent = -100 * ((scrollFraction - panStart)/(panEnd - panStart));
             }
-
-
-
 
             frame.style.left = leftPercent.toString() + '%';
             nestedFrame.style.width = collageSize.toString() + '%';
@@ -147,7 +147,15 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    createParallax(document.getElementsByClassName('metropolis')[0]);
+
     // Halloween
+    animateImages(
+        document.getElementsByClassName('jackolantern')[0],
+        79,
+        'assets/2013/halloween-anim/'
+    );
+
     {
         const track = document.getElementsByClassName('halloween')[0];
         const frame = document.querySelector('.halloween .px-frame .halloween-reel');
@@ -173,80 +181,65 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2014 parralax
-    createParralax(document.getElementsByClassName('y2014')[0]);
+    // 2014 Parallax
+    createParallax(document.getElementsByClassName('y2014')[0]);
 
-    // window.addEventListener('scroll', () => basicParralax(
-    //     document.getElementsByClassName('y2014')[0], 
-    //     document.querySelector('.y2014 .frame'), 
-    //     document.querySelectorAll('.y2014 .floaters img'), 
-    //     [681/14.40, 99/14.40, 146/14.40]
-    // ));
+    // 2015 Parallax
+    createParallax(document.getElementsByClassName('y2015')[0]);
 
-    // 2015 parralax
-    window.addEventListener('scroll', () => basicParralax(
-        document.getElementsByClassName('y2015')[0],
-        document.querySelector('.y2015 .frame'),
-        document.querySelectorAll('.y2015 .floaters img'),
-        [127/14.40, 178/14.40, 732/14.40, 1465/14.40]
-    ));
+    // 2016 gensler Parallax
+    // -=+=- 2016 OLD CODE -=+=-
+    // {
+        // const track = document.getElementsByClassName('gensler')[0];
+        // const frame = document.querySelector('.gensler .frame');
+        // const floaters = document.querySelectorAll('.gensler .floaters img');
+        // const floatersInit = [233/14.4, 456/14.4, 80/14.4];
+        // const backgroundFrame = document.getElementsByClassName('background-text')[0];
 
-    // 2016 gensler parralax
-    {
-        const track = document.getElementsByClassName('gensler')[0];
-        const frame = document.querySelector('.gensler .frame');
-        const floaters = document.querySelectorAll('.gensler .floaters img');
-        const floatersInit = [233/14.4, 456/14.4, 80/14.4];
-        const backgroundFrame = document.getElementsByClassName('background-text')[0];
+        // window.addEventListener('scroll', () => {
+        //     // basic constants from inputs
+        //     const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
+        //     const trackHeight = track.getBoundingClientRect().height;
+        //     const scrollFraction = trackPosition / trackHeight;
 
-        window.addEventListener('scroll', () => {
-            // basic constants from inputs
-            const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
-            const trackHeight = track.getBoundingClientRect().height;
-            const scrollFraction = trackPosition / trackHeight;
+        //     // Create the value that will move the frame
+        //     let leftPercent = (scrollFraction - 0.5) * -100;
+        //     frame.style.left = leftPercent.toString() + '%';
 
-            // Create the value that will move the frame
-            let leftPercent = (scrollFraction - 0.5) * -100;
-            frame.style.left = leftPercent.toString() + '%';
+        //     leftPercent = (scrollFraction - 0.5) * -60;
+        //     backgroundFrame.style.left = leftPercent.toString() + '%';
+        //     // Move floaters
+        //     for(let i=0; i < floaters.length; i++){
+        //         floaters[i].style.left = (floatersInit[i] + leftPercent * 0.25).toString() + '%'
+        //     }
+        // });
+    // }
+    // -=+=- 2016 OLD CODE -=+=-
+    createParallax(document.getElementsByClassName('gensler')[0]);
 
-            leftPercent = (scrollFraction - 0.5) * -60;
-            backgroundFrame.style.left = leftPercent.toString() + '%';
-            // Move floaters
-            for(let i=0; i < floaters.length; i++){
-                floaters[i].style.left = (floatersInit[i] + leftPercent * 0.25).toString() + '%'
-            }
-        });
-    }
+    // 2016 zaha Parallax
+    createParallax(document.getElementsByClassName('zaha')[0]);
 
-    // 2016 zaha parralax
-    window.addEventListener('scroll', () => basicParralax(
-        document.getElementsByClassName('zaha')[0],
-        document.querySelector('.zaha .frame'),
-        document.querySelectorAll('.zaha .floaters img'),
-        [243/14.40, 810/14.40, 122/14.4, 413/14.4] // Add one more here
-    ));
-
-    // 2016 wiscombe parralax
-    window.addEventListener('scroll', () => basicParralax(
-        document.getElementsByClassName('wiscombe')[0],
-        document.querySelector('.wiscombe .frame'),
-        document.querySelectorAll('.wiscombe .floaters img'),
-        [233/14.40, 106/14.40, 1100/14.4 , 670/14.4] // Add one more here
-    ));
+    // 2016 wiscombe Parallax
+    createParallax(document.getElementsByClassName('wiscombe')[0]);
 
     // 2017 Silverlake
     animateImages(
-        document.querySelector('.y2017 canvas'),
         document.getElementsByClassName('y2017')[0],
-        448,
+        447,
         'assets/2017/silverlake-anim/'
     );
 
+    // 2017 Silverlake Portal Info
+    createParallax(document.getElementsByClassName('silverlake-portal')[0]);
+    
+    // s017 Gehry Interview
+    createParallax(document.getElementsByClassName('gehry-interview')[0]);
+
     // 2022 Earth / Dubai
     animateImages(
-        document.querySelector('.y2022 canvas'),
-        document.getElementsByClassName('y2022')[0],
-        150,
+        document.getElementsByClassName('y2022')[0], 
+        150, 
         'assets/2022/earth-image-sequence/'
     );
 
@@ -255,14 +248,12 @@ window.addEventListener('DOMContentLoaded', () => {
         2/3, 
         '0.25s'
     );
-    fadeIn(
-        document.getElementsByClassName('solo-hero'), 
-        2/3, 
-        '0.25s'
-    );
+
+    console.log('JS loaded');
 });
 
-function createParralax(track, spacer) {
+// Function Declarations
+function createParallax(track, spacer) {
     // Declare variables
     let trackPosition = 0,
         trackHeight = 0,
@@ -316,7 +307,7 @@ function createParralax(track, spacer) {
     }
 }
 
-function basicParralax(track, frame, floaters, floatersInit) {
+function basicParallax(track, frame, floaters, floatersInit) {
     // basic constants from inputs
     const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
     const trackHeight = track.getBoundingClientRect().height;
@@ -332,28 +323,24 @@ function basicParralax(track, frame, floaters, floatersInit) {
     }
 }
 
-function animateImages(canvas, track, frameCount, imageLocation){
+function animateImages(track, frameCount, imageLocation){
+    track.style.height = frameCount.toString() + 'vh';
+
+    let canvas = track.getElementsByTagName('canvas')[0];
     const context = canvas.getContext('2d');
+    
+    // I think this is is somehow a raw size that gets altered with CSS later
     canvas.height = 1080;
     canvas.width = 1920;
-
-    // Set current frame
-    const currentFrame = index => (
-        imageLocation + index.toString().padStart(4, '0') + '.jpg'
-    )
 
     // Create image object, set img source to frame one and draw it
     const img = new Image();
     img.src = currentFrame(1);
-    img.onload = function(){
+    img.onload = () => {
         context.drawImage(img, 0, 0);
     }
 
-    // Function to update image
-    const updateImage = index => {
-        img.src = currentFrame(index);
-        context.drawImage(img, 0, 0);
-    }
+    preloadImages();
 
     // What happens each scroll tick
     window.addEventListener('scroll', () =>{
@@ -373,17 +360,27 @@ function animateImages(canvas, track, frameCount, imageLocation){
         }
     })
 
-    // Preload images to prevent lag while scrolling
-    const preloadImages = () => {
+    // Function to set current frame
+    function currentFrame(index){
+        return(imageLocation + index.toString().padStart(4, '0') + '.jpg');
+    }
+
+    // Function to update image
+    function updateImage(index){
+        img.src = currentFrame(index);
+        context.drawImage(img, 0, 0);
+    }
+
+    // Function to preload images in order to prevent lag while scrolling
+    function preloadImages(){
         for (let i = 1; i < frameCount; i++){
             const img = new Image();
             img.src = currentFrame(i);
         }
     }
-
-    preloadImages();
 }
 
+// Idk if I really need this function lmao
 function fadeIn(elements, screenPercent, time) {
     for(let i = 0; i < elements.length; i++){
         // Make element opacity fade
