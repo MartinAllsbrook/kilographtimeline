@@ -1,7 +1,7 @@
-window.addEventListener('DOMContentLoaded', () => {
-    const html = document.documentElement;
-    const body = document.getElementsByTagName('body')[0];
+const html = document.documentElement;
+const body = document.getElementsByTagName('body')[0];
 
+window.addEventListener('DOMContentLoaded', () => {
     // Footer progress bar animation
     {
         const footerFill = document.getElementsByClassName('footer-fill')[0];
@@ -118,7 +118,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const trackHeight = track.getBoundingClientRect().height;
             let scrollFraction = trackPosition / trackHeight;
 
-            console.log(scrollFraction)
+            // console.log(scrollFraction);
 
             let collageSize = 450,
                 leftPercent = 0;
@@ -147,15 +147,17 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 2013 Metropolis
     createParallax(document.getElementsByClassName('metropolis')[0]);
 
-    // Halloween
+    // Halloween Jack-O-Lantern Animation
     animateImages(
         document.getElementsByClassName('jackolantern')[0],
         79,
         'assets/2013/halloween-anim/'
     );
 
+    // Halloween Gallery
     {
         const track = document.getElementsByClassName('halloween')[0];
         const frame = document.querySelector('.halloween .px-frame .halloween-reel');
@@ -233,8 +235,26 @@ window.addEventListener('DOMContentLoaded', () => {
     // 2017 Silverlake Portal Info
     createParallax(document.getElementsByClassName('silverlake-portal')[0]);
     
-    // s017 Gehry Interview
+    // 2017 Gehry Interview
     createParallax(document.getElementsByClassName('gehry-interview')[0]);
+
+    // 2018 Suspension House
+    createParallax(document.getElementsByClassName('y2018')[0]);
+
+    // 2018 Wireframes
+    createParallax(document.getElementsByClassName('wireframes')[0]);
+
+    // 2019 WUHO Gallery Images
+    createParallax(document.getElementsByClassName('y2019')[0]);
+
+    // 2019 Arena Tower
+    createParallax(document.getElementsByClassName('arena-tower')[0]);
+
+    // 2019 Hollywood House
+    createParallax(document.getElementsByClassName('hollywood-house')[0]);
+
+    // 2020 Television City
+    createParallax(document.getElementsByClassName('y2020')[0]);
 
     // 2022 Earth / Dubai
     animateImages(
@@ -249,10 +269,23 @@ window.addEventListener('DOMContentLoaded', () => {
         '0.25s'
     );
 
-    console.log('JS loaded');
+
+    // Remove Loading Screen
+    window.addEventListener('load', (event) => {
+        doneLoading();
+    });
 });
 
-// Function Declarations
+const images = document.getElementsByClassName('zoomable');
+for(let i = 0; i < images.length; i++){
+    clickToEnlarge(images[i]);
+}
+document.querySelector('.image-viewer button').addEventListener('click', () => {
+    body.style.overflowY = 'scroll';
+    document.getElementsByClassName('image-viewer')[0].style.display = 'none'
+})
+
+// Function to create horizontal scrolling and Parralax Animations
 function createParallax(track, spacer) {
     // Declare variables
     let trackPosition = 0,
@@ -261,7 +294,7 @@ function createParallax(track, spacer) {
         leftPercent = 0;
     
     const defaultHeight = 100,
-        parallaxMultiplyer = 10;
+        parallaxMultiplyer = 15;
 
     // Get Elements
     const frame = track.getElementsByClassName('frame')[0];
@@ -307,6 +340,31 @@ function createParallax(track, spacer) {
     }
 }
 
+// Function that allows images to be clicked to enlarge them
+function clickToEnlarge(img) {
+    // What happens to all images
+    img.style.zIndex = '10';
+    
+    // What happens when an image is clicked
+    img.addEventListener('click', () => {
+        console.log(img);
+
+        body.style.overflowY = 'hidden'
+
+        document.getElementsByClassName('image-viewer')[0].style.display = 'flex'
+        document.querySelector('.image-viewer').appendChild(img.cloneNode(true));
+
+    });
+}
+
+// Function to remove loading screen and start timeline
+function doneLoading() {
+    body.style.overflowY = 'scroll';
+    document.getElementsByClassName('loading-screen')[0].style.display = 'none';
+    console.log('JS loaded');
+}
+
+// Old Hrizontal scrolling and paralax function (DO NOT USE)
 function basicParallax(track, frame, floaters, floatersInit) {
     // basic constants from inputs
     const trackPosition = -track.getBoundingClientRect().top + window.innerHeight/2;
@@ -323,6 +381,7 @@ function basicParallax(track, frame, floaters, floatersInit) {
     }
 }
 
+// Fucntion to create a scroll based animation out of a folder of JPGs
 function animateImages(track, frameCount, imageLocation){
     track.style.height = frameCount.toString() + 'vh';
 
@@ -380,7 +439,7 @@ function animateImages(track, frameCount, imageLocation){
     }
 }
 
-// Idk if I really need this function lmao
+// Idk if I really need this function lmao, fades in content.
 function fadeIn(elements, screenPercent, time) {
     for(let i = 0; i < elements.length; i++){
         // Make element opacity fade
