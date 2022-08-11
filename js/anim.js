@@ -1,7 +1,38 @@
 const html = document.documentElement;
 const body = document.getElementsByTagName('body')[0];
+// Loading Screen
+window.addEventListener('load', (event) => {
+    doneLoading();
+});
 
+
+// This waits for all HTML to be parsed before reading te JS
 window.addEventListener('DOMContentLoaded', () => {
+    // Background Collage Animation
+    {
+        const track = html;
+        // Declare variables
+        let trackPosition = 0,
+            trackHeight = 0,
+            scrollFraction = 0,
+            leftPercent = 0;
+
+        // Get Elements
+        const frame = track.getElementsByClassName('background-collage')[0];
+
+        // What happens each scroll tick
+        window.addEventListener('scroll', () => {
+            // Get current track position
+            trackHeight = track.getBoundingClientRect().height;
+            trackPosition = -track.getBoundingClientRect().top; // Gets the current position of the track 0 is when the track is centered in the window | '-trackheight/2' moves 0 to the middle of the track | '+window.innerheight/2 moves 0 to the middle of the window
+            scrollFraction = trackPosition / trackHeight; // -1 => track 1/2 into frame | 0 => track centered in frmae | 1 => track 1/2 out of frame
+            console.log(scrollFraction);
+            // Translate scrollFraction a value that can be assligned to the frames position
+            leftPercent = scrollFraction * -500 + 100; // scroll fraction -1 => 1 | left percent 100 => -100
+            frame.style.left = leftPercent.toString() + '%';
+        }); 
+    }
+
     // Footer progress bar animation
     {
         const footerFill = document.getElementsByClassName('footer-fill')[0];
@@ -49,6 +80,9 @@ window.addEventListener('DOMContentLoaded', () => {
             yearsOfHolder.style.left = pxTotal.toString() + 'px';
         });
     }
+
+    // 2010 Transition
+    createParallax(document.querySelector('#y2010 .transition'));
 
     // 2010 Quatar Airport City
     createParallax(document.getElementsByClassName('y2010')[0]);
@@ -124,6 +158,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 leftPercent = 0;
             // Initial zoom out of collage
             if(scrollFraction < panStart) {
+                frame.style.position = 'relative';
+
                 // Remove any movement before the frame is in view
                 if(scrollFraction <= 0) {
                     scrollFraction = 0;
@@ -270,20 +306,10 @@ window.addEventListener('DOMContentLoaded', () => {
     );
 
 
-    // Remove Loading Screen
-    window.addEventListener('load', (event) => {
-        doneLoading();
-    });
 });
 
 const images = document.getElementsByClassName('zoomable');
-for(let i = 0; i < images.length; i++){
-    clickToEnlarge(images[i]);
-}
-document.querySelector('.image-viewer button').addEventListener('click', () => {
-    body.style.overflowY = 'scroll';
-    document.getElementsByClassName('image-viewer')[0].style.display = 'none'
-})
+clickToEnlarge(images);
 
 // Function to create horizontal scrolling and Parralax Animations
 function createParallax(track, spacer) {
@@ -341,20 +367,25 @@ function createParallax(track, spacer) {
 }
 
 // Function that allows images to be clicked to enlarge them
-function clickToEnlarge(img) {
-    // What happens to all images
-    img.style.zIndex = '10';
-    
-    // What happens when an image is clicked
-    img.addEventListener('click', () => {
-        console.log(img);
+function clickToEnlarge(images) {
+    for(let i = 0; i < images.length; i++){
+        // What happens to all images
+        images[i].style.zIndex = '10';
+        
+        // What happens when an image is clicked
+        images[i].addEventListener('click', () => {
+            body.style.overflowY = 'hidden'
+            document.getElementsByClassName('image-viewer')[0].style.display = 'flex'
+            document.querySelector('.image-viewer').appendChild(images[i].cloneNode(true));
 
-        body.style.overflowY = 'hidden'
+        });
+    }
 
-        document.getElementsByClassName('image-viewer')[0].style.display = 'flex'
-        document.querySelector('.image-viewer').appendChild(img.cloneNode(true));
-
-    });
+    document.querySelector('.image-viewer button').addEventListener('click', () => {
+        body.style.overflowY = 'scroll';
+        document.getElementsByClassName('image-viewer')[0].style.display = 'none'
+        document.querySelector('.image-viewer .zoomable').remove();
+    })
 }
 
 // Function to remove loading screen and start timeline

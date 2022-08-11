@@ -343,6 +343,19 @@ body{
     overflow-y: hidden;
 }
 
+/* -=+========================+=- */
+/* -=+=- BACKGROUND COLLAGE -=+=- */
+/* -=+========================+=- */
+.background-collage {
+
+    width: fit-content;
+    display: flex;
+}
+.background-collage img {
+    filter: grayscale(100%);
+    opacity: 20%;
+}
+
 /* -=+==================+=- */
 /* -=+=- Image Viewer -=+=- */
 /* -=+==================+=- */
@@ -399,6 +412,38 @@ body{
     height: fit-content;
 
     object-fit: contain;
+}
+
+/* -=+================+=- */
+/* -=+=- Transition -=+=- */
+/* -=+================+=- */
+.transition .px-frame{
+    /* height: fit-content; */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.transition .px-frame div{
+    display: flex;
+    justify-content: center;
+    margin: 5% 0;
+    height: 10%;
+}
+.transition img{
+    width: 7.5%;
+    height: fit-content;
+
+    margin: 2.5%;
+}
+.transition h1{
+    line-height: 100%;
+
+    /* margin: 2.5% 0 5% 0; */
+}
+.transition .content {
+    opacity: 0%;
+    transition: opacity 0.25s linear;
 }
 
 /* -=+============+=- */
@@ -659,34 +704,7 @@ header a img{
 
     margin: 10px 0 0 0;
 }
-/* -=+================+=- */
-/* -=+=- Transition -=+=- */
-/* -=+================+=- */
-.transition .px-frame{
-    display: block;
-    height: fit-content;
-}
-.transition .px-frame div{
-    display: flex;
-    justify-content: center;
-    margin: 5% 0;
-    height: 10%;
-}
-.transition img{
-    width: 10%;
-    height: 10%;
 
-    /* margin: 2.5%; */
-}
-.transition h1{
-    line-height: 100%;
-
-    /* margin: 2.5% 0 5% 0; */
-}
-.transition .content {
-    opacity: 0%;
-    transition: opacity 0.25s linear;
-}
 /* -=+==========+=- */
 /* -=+=- 2013 -=+=- */
 /* -=+==========+=- */
@@ -910,36 +928,48 @@ header a img{
 /* -=+==========+=- */
 /* -=+=- 2015 -=+=- */
 /* -=+==========+=- */
-.y2015 .extra-hero{
-    position: absolute;
-
-    width: calc(484%/14.40);
-    left: calc(1131%/14.40);
-    top: calc(441%/8.10);
-}
 .y2015 .parallax-layer:nth-child(2) img:nth-child(1){
-    width: calc(231%/14.40);
+    width: calc(18%);
 
-    left: calc(681%/14.40);
-    top: calc(531%/8.10);
+    left: calc(12%);
+    top: calc(20%);
 }
 .y2015 .parallax-layer:nth-child(2) img:nth-child(2){
-    width: calc(304%/14.40);
+    width: calc(16%);
 
-    left: calc(99%/14.40);
-    top: calc(118%/8.10);
+    left: calc(10%);
+    top: calc(65%);
 }
 .y2015 .parallax-layer:nth-child(2) img:nth-child(3){
-    width: calc(210%/14.40);
+    width: calc(20%);
 
-    left: calc(146%/14.40);
-    top: calc(550%/8.10);
+    left: calc(45%);
+    top: calc(61%);
 }
-.y2015 .parallax-layer:nth-child(2) img:nth-child(4){
-    width: calc(233%/14.40);
 
-    left: calc(146%/14.40);
-    top: calc(320%/8.10);
+.y2015 .parallax-layer:nth-child(3) img:nth-child(1){
+    width: calc(9%);
+
+    left: calc(25%);
+    top: calc(12%);
+}
+.y2015 .parallax-layer:nth-child(3) img:nth-child(2){
+    width: calc(9%);
+
+    left: calc(6%);
+    top: calc(57%);
+}
+.y2015 .parallax-layer:nth-child(3) img:nth-child(3){
+    width: calc(8%);
+
+    left: calc(38%);
+    top: calc(69%);
+}
+.y2015 .parallax-layer:nth-child(3) img:nth-child(4){
+    width: calc(12%);
+
+    left: calc(53%);
+    top: calc(11%);
 }
 /* -=+==========+=- */
 /* -=+=- 2016 -=+=- */
@@ -955,73 +985,111 @@ header a img{
 }
 
 .gensler .parallax-layer:nth-child(2) img:nth-child(1){
-    width: calc(333%/14.40);
+    width: calc(18%);
 
-    left: calc(681%/14.40);
-    top: calc(501%/8.10);
+    left: calc(12%);
+    top: calc(20%);
 }
 .gensler .parallax-layer:nth-child(2) img:nth-child(2){
-    width: calc(320%/14.40);
+    width: calc(16%);
 
-    left: calc(99%/14.40);
-    top: calc(110%/8.10);
+    left: calc(10%);
+    top: calc(65%);
 }
 .gensler .parallax-layer:nth-child(2) img:nth-child(3){
-    width: calc(210%/14.40);
+    width: calc(20%);
 
-    left: calc(146%/14.40);
-    top: calc(200%/8.10);
+    left: calc(45%);
+    top: calc(61%);
 }
 
 
 .zaha .parallax-layer:nth-child(2) img:nth-child(1){
-    width: calc(225%/14.40);
+    width: calc(18%);
 
-    left: calc(681%/14.40);
-    top: calc(164%/8.10);
+    left: calc(12%);
+    top: calc(20%);
 }
 .zaha .parallax-layer:nth-child(2) img:nth-child(2){
-    width: calc(195%/14.40);
+    width: calc(16%);
 
-    left: calc(99%/14.40);
-    top: calc(466%/8.10);
+    left: calc(10%);
+    top: calc(65%);
 }
 .zaha .parallax-layer:nth-child(2) img:nth-child(3){
-    width: calc(187%/14.40);
+    width: calc(20%);
 
-    left: calc(146%/14.40);
-    top: calc(451%/8.10);
+    left: calc(45%);
+    top: calc(61%);
 }
-.zaha .parallax-layer:nth-child(2) img:nth-child(4){
-    width: calc(314%/14.40);
 
-    left: calc(146%/14.40);
-    top: calc(542%/8.10);
+.zaha .parallax-layer:nth-child(3) img:nth-child(1){
+    width: calc(9%);
+
+    left: calc(25%);
+    top: calc(12%);
+}
+.zaha .parallax-layer:nth-child(3) img:nth-child(2){
+    width: calc(9%);
+
+    left: calc(6%);
+    top: calc(57%);
+}
+.zaha .parallax-layer:nth-child(3) img:nth-child(3){
+    width: calc(8%);
+
+    left: calc(38%);
+    top: calc(69%);
+}
+.zaha .parallax-layer:nth-child(3) img:nth-child(4){
+    width: calc(12%);
+
+    left: calc(53%);
+    top: calc(11%);
 }
 
 .wiscombe .parallax-layer:nth-child(2) img:nth-child(1){
-    width: calc(245%/14.40);
+    width: calc(18%);
 
-    left: calc(681%/14.40);
-    top: calc(164%/8.10);
+    left: calc(12%);
+    top: calc(20%);
 }
 .wiscombe .parallax-layer:nth-child(2) img:nth-child(2){
-    width: calc(275%/14.40);
+    width: calc(16%);
 
-    left: calc(681%/14.40);
-    top: calc(520%/8.10);
+    left: calc(10%);
+    top: calc(65%);
 }
 .wiscombe .parallax-layer:nth-child(2) img:nth-child(3){
-    width: calc(225%/14.40);
+    width: calc(20%);
 
-    left: calc(681%/14.40);
-    top: calc(450%/8.10);
+    left: calc(45%);
+    top: calc(61%);
 }
-.wiscombe .parallax-layer:nth-child(2) img:nth-child(4){
-    width: calc(240%/14.40);
 
-    left: calc(681%/14.40);
-    top: calc(570%/8.10);
+.wiscombe .parallax-layer:nth-child(3) img:nth-child(1){
+    width: calc(9%);
+
+    left: calc(25%);
+    top: calc(12%);
+}
+.wiscombe .parallax-layer:nth-child(3) img:nth-child(2){
+    width: calc(9%);
+
+    left: calc(6%);
+    top: calc(57%);
+}
+.wiscombe .parallax-layer:nth-child(3) img:nth-child(3){
+    width: calc(8%);
+
+    left: calc(38%);
+    top: calc(69%);
+}
+.wiscombe .parallax-layer:nth-child(3) img:nth-child(4){
+    width: calc(12%);
+
+    left: calc(53%);
+    top: calc(11%);
 }
 
 /* -=+==========+=- */

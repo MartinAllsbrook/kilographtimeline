@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     const footer = document.getElementsByClassName('footer')[0];
     for(let i = 0; i < 14; i++) {
-        footer.innerHTML = footer.innerHTML + '<div class="footer-date"> <h6>2' + (9+i).toString().padStart(3, '0') +'</h6></div>';
+        footer.innerHTML = footer.innerHTML + '<a href="#y2' + (9+i).toString().padStart(3, '0') + '" class="footer-date"> <h6>2' + (9+i).toString().padStart(3, '0') +'</h6></a>';
     }
 
     const slideshow = document.getElementsByClassName('intro-slideshow')[0];
