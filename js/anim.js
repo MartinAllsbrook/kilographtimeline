@@ -8,9 +8,26 @@ window.addEventListener('load', (event) => {
 
 // This waits for all HTML to be parsed before reading te JS
 window.addEventListener('DOMContentLoaded', () => {
+    // Writing repetitive HTML
+    {
+        const footer = document.getElementsByClassName('footer')[0];
+        for(let i = 0; i < 14; i++) {
+            footer.innerHTML = footer.innerHTML + '<a href="#y2' + (9+i).toString().padStart(3, '0') + '" class="footer-date"> <h6>2' + (9+i).toString().padStart(3, '0') +'</h6></a>';
+        }
+    
+        const slideshow = document.getElementsByClassName('intro-slideshow')[0];
+        for(let i = 1; i < 6; i++) {
+            slideshow.innerHTML = slideshow.innerHTML + '<image src="assets/intro/slideshow/' + i.toString().padStart(3, '0') + '.jpg" alt="Slideshow Image">';
+        }
+    
+        const halloweenReel = document.getElementsByClassName('halloween-reel')[0]
+        for(let i = 1; i <= 7; i++) {
+            halloweenReel.innerHTML = halloweenReel.innerHTML + '<image src="assets/2013/Halloween best/' + i.toString().padStart(3, '0') + '.jpg" alt="Halloween Reel Image">'
+        }
+    }
     // Background Collage Animation
     {
-        const track = html;
+        const track = document.getElementById('years');
         // Declare variables
         let trackPosition = 0,
             trackHeight = 0,
@@ -18,7 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
             leftPercent = 0;
 
         // Get Elements
-        const frame = track.getElementsByClassName('background-collage')[0];
+        const frame = document.getElementsByClassName('background-collage')[0];
 
         // What happens each scroll tick
         window.addEventListener('scroll', () => {
@@ -26,7 +43,6 @@ window.addEventListener('DOMContentLoaded', () => {
             trackHeight = track.getBoundingClientRect().height;
             trackPosition = -track.getBoundingClientRect().top; // Gets the current position of the track 0 is when the track is centered in the window | '-trackheight/2' moves 0 to the middle of the track | '+window.innerheight/2 moves 0 to the middle of the window
             scrollFraction = trackPosition / trackHeight; // -1 => track 1/2 into frame | 0 => track centered in frmae | 1 => track 1/2 out of frame
-            console.log(scrollFraction);
             // Translate scrollFraction a value that can be assligned to the frames position
             leftPercent = scrollFraction * -500 + 100; // scroll fraction -1 => 1 | left percent 100 => -100
             frame.style.left = leftPercent.toString() + '%';
@@ -81,8 +97,14 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2010 Transition
-    createParallax(document.querySelector('#y2010 .transition'));
+    // Start of year specific JS
+    // Add horizontal scrolling / parallax to all transition sections
+    {
+        const transitions = document.getElementsByClassName('transition');
+        for(let i = 0; i < transitions.length; i++){
+            createParallax(transitions[i]);
+        }
+    }
 
     // 2010 Quatar Airport City
     createParallax(document.getElementsByClassName('y2010')[0]);
@@ -154,7 +176,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             // console.log(scrollFraction);
 
-            let collageSize = 450,
+            let collageSize = 475,
                 leftPercent = 0;
             // Initial zoom out of collage
             if(scrollFraction < panStart) {
@@ -166,7 +188,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Set movement variables
-                collageSize = (450 - 100*(scrollFraction * 0.5/panStart)) * Math.pow((1 - (scrollFraction * 0.5/panStart)), 2);
+                collageSize = (475 - 100*(scrollFraction * 0.5/panStart)) * Math.pow((1 - (scrollFraction * 0.5/panStart)), 2);
                 leftPercent = 0;
 
             // Pan entire frame
@@ -299,6 +321,14 @@ window.addEventListener('DOMContentLoaded', () => {
         'assets/2022/earth-image-sequence/'
     );
 
+    // 2022 Animation Horizontal Scrolling 
+    createParallax(document.getElementsByClassName('y2022')[0]);
+
+    // 2022 Aire parallax
+    createParallax(document.getElementsByClassName('aire')[0]);
+
+
+
     fadeIn(
         document.querySelectorAll('.transition .content'), 
         2/3, 
@@ -319,8 +349,9 @@ function createParallax(track, spacer) {
         scrollFraction = 0,
         leftPercent = 0;
     
+    // THESE CAN BE EDIDTED TO EFFECT THE SPEED OF HORIZONTAL SCROLLING AND PARALLAX
     const defaultHeight = 100,
-        parallaxMultiplyer = 15;
+        parallaxMultiplyer = 11;
 
     // Get Elements
     const frame = track.getElementsByClassName('frame')[0];
@@ -328,11 +359,11 @@ function createParallax(track, spacer) {
 
     // Set Sizes
     track.style.width = '100%';
-    track.style.height = defaultHeight.toString() + 'vh';
+    track.style.height = defaultHeight.toString() + 'vw';
     // If a spacing is specified
     if(arguments.length == 2){
         // Set spacing
-        track.style.marginBottom = spacer.toString() + 'vh';
+        track.style.marginBottom = spacer.toString() + 'vw';
     }
 
     if(parallaxLayers.length == 1){
