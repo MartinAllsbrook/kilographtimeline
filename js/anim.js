@@ -206,7 +206,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2013 Metropolis
-    createParallax(document.getElementsByClassName('metropolis')[0]);
+    createParallax(document.getElementsByClassName('metropolis')[0], 40);
 
     // Halloween Jack-O-Lantern Animation
     animateImages(

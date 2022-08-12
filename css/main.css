@@ -889,6 +889,7 @@ header a img{
 /* -=+===============+=- */
 
 .halloween{
+    /* margin-top: -50vw; */
     height: 500vw;
     margin-bottom: -120vw;
 }
@@ -1123,6 +1124,7 @@ header a img{
 /* -=+=- 2017 -=+=- */
 /* -=+==========+=- */
 .y2017 {
+    margin-top: 50vw;
     height: 500vw;
 }
 .y2017 .frame{
